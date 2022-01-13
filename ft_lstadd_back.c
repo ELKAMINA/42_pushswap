@@ -1,3 +1,4 @@
+#include "push_swap.h"
 
 void	ft_lstadd_back(t_list **alst, t_list *new)
 {
@@ -10,4 +11,7 @@ void	ft_lstadd_back(t_list **alst, t_list *new)
 	}
 	last = ft_lstlast(*alst);
 	last -> next = new;
+	new -> previous = last;
+	new -> next =  NULL;
 }
+                   

@@ -1,3 +1,5 @@
+#include "push_swap.h"
+
 t_list	*ft_lstlast(t_list *lst)
 {
 	if (!lst)
@@ -6,3 +8,4 @@ t_list	*ft_lstlast(t_list *lst)
 		lst = lst->next;
 	return (lst);
 }
+  

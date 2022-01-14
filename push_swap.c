@@ -7,6 +7,7 @@ int	check_args(char	*argv[])
 	i = 1;
 	while (argv[i])
 	{
+		
 		if	(*argv[i] < 48 || *argv[i] > 57)
 			return (0);
 		i ++;
@@ -89,6 +90,12 @@ int main (int   argc, char  *argv[])
 	{
 		head_A = create_A(argc, argv);
 		head_B = create_B();
+		// swap_a(head_A);
+		// while (head_A != NULL)
+		// { 
+		// 	printf("%d\n", head_A -> data);
+		// 	head_A = head_A -> next;
+		// }
 	}
 	return 0 ;
 }

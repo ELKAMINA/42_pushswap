@@ -29,5 +29,6 @@ long	ft_atol(const char *str);
 t_list	*ft_lstnew(int	argument);
 void	ft_lstadd_back(t_list **alst, t_list *new);
 t_list	*ft_lstlast(t_list *lst);
+void 	swap_a(t_list  *head_A);
 
 #endif

@@ -35,12 +35,47 @@ int check_dup(char *argv[], int n)
 	return (1);
 }
 
-int main (int   argc, char  *argv[])
+t_list *create_A(int argc, char *argv[])
 {
 	int i;
 	int n;
-	t_list *head;
-	t_list *current;
+	t_list *head_A;
+	t_list *current_A;
+
+	n = argc - 1;
+	i = 3;
+
+	head_A = ft_lstnew((int)ft_atol(argv[1]));
+	current_A = ft_lstnew((int)ft_atol(argv[2]));
+	head_A -> next = current_A;
+	current_A -> previous = head_A;
+	while (i <= n)
+	{
+		current_A = ft_lstnew((int)ft_atol(argv[i]));
+		ft_lstadd_back(&head_A, current_A);
+		i++;
+	}
+	//je recupere et je parse mes arguments et je les affiche
+	while (head_A != NULL)
+	{ 
+		printf("%d\n", head_A -> data);
+		head_A = head_A -> next;
+	}
+	return (head_A);
+}
+t_list *create_B()
+{
+	t_list *head_B;
+
+	head_B = ft_lstnew(0);
+	return (head_B);
+}
+
+int main (int   argc, char  *argv[])
+{
+	int n;
+	t_list *head_A;
+	t_list *head_B;
 
 	n = argc - 1;
 	if (argc < 2)
@@ -52,24 +87,8 @@ int main (int   argc, char  *argv[])
 	}
 	else 
 	{
-		i = 3;
-		head = ft_lstnew((int)ft_atol(argv[1]));
-		current = ft_lstnew((int)ft_atol(argv[2]));
-		head -> next = current;
-		current -> previous = head;
-		while (i <= n)
-		{
-			current = ft_lstnew((int)ft_atol(argv[i]));
-			ft_lstadd_back(&head, current);
-			i++;
-		}
-		//je recupere et je parse mes arguments
-		// while (head != NULL)
-		// { 
-		// 	printf("%d\n", head -> data);
-		// 	head = head -> next;
-		// }
-
+		head_A = create_A(argc, argv);
+		head_B = create_B();
 	}
 	return 0 ;
 }

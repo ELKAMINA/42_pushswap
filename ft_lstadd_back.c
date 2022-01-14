@@ -13,5 +13,4 @@ void	ft_lstadd_back(t_list **alst, t_list *new)
 	last -> next = new;
 	new -> previous = last;
 	new -> next =  NULL;
-}
-                   
+}    

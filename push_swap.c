@@ -5,7 +5,7 @@ int	check_args(char	*argv[])
 	int	i; 
 
 	i = 1;
-	while (*argv[i])
+	while (argv[i])
 	{
 		if	(*argv[i] < 48 || *argv[i] > 57)
 			return (0);
@@ -13,6 +13,27 @@ int	check_args(char	*argv[])
 	}
 	return (1);
 }
+
+// int check_dup(char *argv[])
+// {
+// 	int	i;
+// 	int	j;
+
+// 	i = 1;
+// 	j = 2;
+// 	while (argv[i])
+// 	{
+// 		while(argv[j])
+// 		{
+// 			if (argv[i] == argv[j])
+// 				return (0);
+// 			j++;
+// 		}
+// 		j = i + 1;
+// 		i++;
+// 	}
+// 	return (1);
+// }
 
 int main (int   argc, char  *argv[])
 {
@@ -50,5 +71,7 @@ int main (int   argc, char  *argv[])
 		}
 
 	}
+	//printf("%s", "Hello");
+	//printf("%s", *argv);
 	return 0 ;
 }

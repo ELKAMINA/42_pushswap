@@ -14,26 +14,26 @@ int	check_args(char	*argv[])
 	return (1);
 }
 
-// int check_dup(char *argv[])
-// {
-// 	int	i;
-// 	int	j;
+int check_dup(char *argv[], int n)
+{
+	int	i;
+	int	j;
 
-// 	i = 1;
-// 	j = 2;
-// 	while (argv[i])
-// 	{
-// 		while(argv[j])
-// 		{
-// 			if (argv[i] == argv[j])
-// 				return (0);
-// 			j++;
-// 		}
-// 		j = i + 1;
-// 		i++;
-// 	}
-// 	return (1);
-// }
+	i = 1;
+	j = i + 1;
+	while (i <= n)
+	{
+		while(j <= n)
+		{
+			if (ft_atol(argv[i]) == ft_atol(argv[j]))
+				return (0);
+			j++;
+		}
+		i++;
+		j = i + 1;
+	}
+	return (1);
+}
 
 int main (int   argc, char  *argv[])
 {
@@ -42,16 +42,16 @@ int main (int   argc, char  *argv[])
 	t_list *head;
 	t_list *current;
 
+	n = argc - 1;
 	if (argc < 2)
 		return 0;
-	if	(check_args(argv) == 0)
+	if	(check_args(argv) == 0 || check_dup(argv, n) == 0)
 	{
 		write (2, "Error\n", 6);
 		return 0;
 	}
 	else 
 	{
-		n = argc - 1;
 		i = 3;
 		head = ft_lstnew((int)ft_atol(argv[1]));
 		current = ft_lstnew((int)ft_atol(argv[2]));
@@ -63,15 +63,13 @@ int main (int   argc, char  *argv[])
 			ft_lstadd_back(&head, current);
 			i++;
 		}
-		// je recupere et je parse mes arguments
-		while (head != NULL)
-		{ 
-			printf("%d\n", head -> data);
-			head = head -> next;
-		}
+		//je recupere et je parse mes arguments
+		// while (head != NULL)
+		// { 
+		// 	printf("%d\n", head -> data);
+		// 	head = head -> next;
+		// }
 
 	}
-	//printf("%s", "Hello");
-	//printf("%s", *argv);
 	return 0 ;
 }

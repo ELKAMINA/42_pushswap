@@ -16,14 +16,10 @@ typedef struct s_list
 	struct s_list	*previous;
 	struct s_list	*next;
 }					t_list;
-
-// Définition de la DClist qui va contenir head and tail
-// typedef struct DC_List
+// typedef struct s_head
 // {
-// 	int			    *length;
-// 	struct DC_List	*head;
-// 	struct DC_List	*tail;
-// }*DC_List;
+// 	t_list *root;
+// }					t_head;
 
 long	ft_atol(const char *str);
 t_list	*ft_lstnew(int	argument);

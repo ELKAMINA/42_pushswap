@@ -57,11 +57,11 @@ t_list *create_A(int argc, char *argv[])
 		i++;
 	}
 	//je recupere et je parse mes arguments et je les affiche
-	while (head_A != NULL)
-	{ 
-		printf("%d\n", head_A -> data);
-		head_A = head_A -> next;
-	}
+	// while (head_A != NULL)
+	// { 
+	// 	printf("%d\n", head_A -> data);
+	// 	head_A = head_A -> next;
+	// }
 	return (head_A);
 }
 t_list *create_B()
@@ -90,12 +90,7 @@ int main (int   argc, char  *argv[])
 	{
 		head_A = create_A(argc, argv);
 		head_B = create_B();
-		// swap_a(head_A);
-		// while (head_A != NULL)
-		// { 
-		// 	printf("%d\n", head_A -> data);
-		// 	head_A = head_A -> next;
-		// }
+		swap_a(head_A);
 	}
 	return 0 ;
 }

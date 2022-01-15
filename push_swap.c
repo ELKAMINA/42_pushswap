@@ -89,8 +89,22 @@ int main (int   argc, char  *argv[])
 	else 
 	{
 		head_A = create_A(argc, argv);
-		head_B = create_B();
-		swap_a(head_A);
+		head_B = NULL;
+		// swap_a(head_A);
+		// swap_b(head_B);
+		//push_a(&head_A, &head_B);
+		push_b(&head_B, &head_A);
+		// while (head_A != NULL)
+    	// { 
+		// 	printf("%d\n", head_A -> data);
+		// 	head_A = head_A -> next;
+    	// }
+		while (head_B != NULL)
+    	{ 
+			printf("%d\n", head_B -> data);
+			head_B = head_B -> next;
+    	}
+		
 	}
 	return 0 ;
 }

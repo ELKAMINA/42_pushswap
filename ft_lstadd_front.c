@@ -1,16 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ael-khat <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/06 17:54:45 by ael-khat          #+#    #+#             */
-/*   Updated: 2021/12/08 21:05:58 by ael-khat         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "libft.h"
+#include "push_swap.h"
 
 void	ft_lstadd_front(t_list **alst, t_list *new)
 {
@@ -22,5 +10,6 @@ void	ft_lstadd_front(t_list **alst, t_list *new)
 	if (!new)
 		return ;
 	new->next = *alst;
+	new -> previous = NULL;
 	*alst = new;
 }

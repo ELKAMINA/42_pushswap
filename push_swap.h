@@ -26,5 +26,10 @@ t_list	*ft_lstnew(int	argument);
 void	ft_lstadd_back(t_list **alst, t_list *new);
 t_list	*ft_lstlast(t_list *lst);
 void 	swap_a(t_list  *head_A);
+void 	swap_b(t_list  *head_B);
+void	ft_lstadd_front(t_list **alst, t_list *new);
+void 	push_a(t_list **a, t_list **b);
+void 	push_b(t_list **a, t_list **b);
+void 	ss(t_list *a, t_list *b);
 
 #endif

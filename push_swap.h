@@ -32,5 +32,6 @@ void 	rotate_b(t_list **b);
 void 	rotate_rr(t_list **a);
 void 	rev_rotate_a(t_list **a);
 void 	rev_rotate_b(t_list **b);
+void 	sorting_three(t_list *head_A);
 
 #endif

@@ -17,11 +17,14 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+void fonction_swap(t_list  *start);
+
+void	print_lst(t_list  *start);
 long	ft_atol(const char *str);
 t_list	*ft_lstnew(int	argument);
 void	ft_lstadd_back(t_list **alst, t_list *new);
 t_list	*ft_lstlast(t_list *lst);
-void 	swap_a(t_list  *head_A);
+void 	swap_a(t_list  **head_A);
 void 	swap_b(t_list  *head_B);
 void	ft_lstadd_front(t_list **alst, t_list *new);
 void 	push_a(t_list **a, t_list **b);
@@ -32,6 +35,6 @@ void 	rotate_b(t_list **b);
 void 	rotate_rr(t_list **a);
 void 	rev_rotate_a(t_list **a);
 void 	rev_rotate_b(t_list **b);
-void 	sorting_three(t_list *head_A);
+void 	sorting_three(t_list **head_A);
 
 #endif

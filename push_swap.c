@@ -67,6 +67,18 @@ t_list *create_B()
 	return (head_B);
 }
 
+void	print_lst(t_list  *start)
+{
+	t_list *temp;
+
+	temp = start;
+	while (temp)
+	{
+		printf("[%d]\n", temp->data);
+		temp = temp->next;
+	}
+}
+
 int main (int   argc, char  *argv[])
 {
 	int n;
@@ -85,19 +97,16 @@ int main (int   argc, char  *argv[])
 	{
 		head_A = create_A(argc, argv);
 		//head_B = NULL;
-		// swap_a(head_A);
+		//swap_a(&head_A);
 		// swap_b(head_B);
 		//push_a(&head_A, &head_B);
 		//push_b(&head_B, &head_A);
 		//rotate_a(&head_A);
-		//rev_rotate_a(&head_A);
+		rev_rotate_a(&head_A);
 		//rev_rotate_b(&head_B);
-		sorting_three(head_A);
-		while (head_A != NULL)
-    	{ 
-			printf("%d\n", head_A -> data);
-			head_A = head_A -> next;
-    	}
+		// if	(argc == 4)
+		//sorting_three(&head_A);		
+		print_lst(head_A);
 	}
 	return 0 ;
 }

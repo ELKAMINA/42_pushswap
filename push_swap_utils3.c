@@ -20,11 +20,11 @@ void sorting_three(t_list **head)
     }
     else if (nb1 > nb2 && nb2 < nb3 && nb3 < nb1)
         rotate_a(head);
-    // else if (nb1 < nb2 && nb2 > nb3 && nb3 > nb1)
-    // {
-    //     swap_a(*head);
-    //     rotate_a(head);
-    // }
-    // else
-    //     rev_rotate_a(head);
+    else if (nb1 < nb2 && nb2 > nb3 && nb3 > nb1)
+    {
+        swap_a(head);
+        rotate_a(head);
+    }
+    else
+        rev_rotate_a(head);
 }

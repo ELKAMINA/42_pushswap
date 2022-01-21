@@ -102,11 +102,15 @@ int main (int   argc, char  *argv[])
 		//push_a(&head_A, &head_B);
 		//push_b(&head_B, &head_A);
 		//rotate_a(&head_A);
+		//print_lst(head_A);
 		//rev_rotate_a(&head_A);
 		//rev_rotate_b(&head_B);
-		if	(argc == 4)
-			sorting_three(&head_A);		
-		print_lst(head_A);
+		// if	(argc > 2 && argc < 4)
+		// 	sorting_three(&head_A);	
+		// if	(argc > 3 && argc <= 6)
+		// 	sorting_five(&head_A, &head_B);
+		//printf("%d", higher(&head_A));
+		printf("%d", lower(&head_A));
 	}
 	return 0 ;
 }

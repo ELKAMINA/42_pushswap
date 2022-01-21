@@ -36,12 +36,15 @@ void rotate_a(t_list **a)
         newNode = newNode -> next;
     // En sortant de la boucle, on sarrete à lavant derniere valeur 
     // newNode -> next -> next correspond a NULL. On crée donc une double liste chainée circulaire ou le dernier élément pointe vers le premier.
-    newNode -> next -> next = newNode-> previous;
-    newNode -> previous -> previous = newNode-> next -> next;
-    newNode -> next -> next -> next = NULL;
+    //newNode -> next -> next = *a;
+    (*a) -> previous = newNode -> next -> next;
+    //(*a) -> next = NULL;
+    newNode -> next -> next = (*a);
+    (*a) = (*a) -> next;
+    (*a) -> previous = NULL;
+    newNode -> next -> next -> next =  NULL;
     //Ici, Head prend donc la valeur de newNode -> next, qui est la derniere valeur.
-    newNode -> previous = NULL;
-    *a = newNode;
+    //newNode-> next -> next -> next = NULL;
     //     //write(1, "ra\n", 3);
 }
 

@@ -76,32 +76,31 @@ void swap_a(t_list  **start)
 //     //write (1, "ss\n", 3);
 // }
 
-// void push_a(t_list **dest, t_list **src)
-// {
-//     // helper function which adds a new node at the top of a list
-//     t_list  *newNode;
-//     if (*src == NULL) {
-//         return;
-//     }
+void push_a(t_list **dest, t_list **src)
+{
+    // helper function which adds a new node at the top of a list
+    t_list  *newNode;
+    if (*src == NULL) {
+        return;
+    }
  
-//     newNode = *src;  // the front source node
-//     *src = (*src)->next;    // advance the source pointer
-//     newNode->next = *dest;           // link the old dest off the new node
-//     *dest = newNode;  
-//     //write(1, "pa\n", 3);
-// }
+    newNode = *src;  // the front source node
+    *src = (*src)->next;    // advance the source pointer
+    newNode->next = *dest;           // link the old dest off the new node
+    *dest = newNode;  
+    //write(1, "pa\n", 3);
+}
 
-// void push_b(t_list **dest, t_list **src)
-// {
-//     // helper function which adds a new node at the top of a list
-//     t_list  *newNode;
-//     if (*src == NULL) {
-//         return;
-//     }
- 
-//     newNode = *src;  // the front source node
-//     *src = (*src)->next;    // advance the source pointer
-//     newNode->next = *dest;           // link the old dest off the new node
-//     *dest = newNode; 
-//     //write(1, "pb\n", 3);
-// }
+void push_b(t_list **dest, t_list **src)
+{
+    // helper function which adds a new node at the top of a list
+    t_list  *newNode;
+    if (*src == NULL) {
+        return ;
+    }
+    newNode = *src;  // the front source node
+    *src = (*src)->next;    // advance the source pointer
+    newNode->next = *dest;           // link the old dest off the new node
+    *dest = newNode; 
+    //write(1, "pb\n", 3);
+}

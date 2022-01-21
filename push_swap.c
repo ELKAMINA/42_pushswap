@@ -102,10 +102,10 @@ int main (int   argc, char  *argv[])
 		//push_a(&head_A, &head_B);
 		//push_b(&head_B, &head_A);
 		//rotate_a(&head_A);
-		rev_rotate_a(&head_A);
+		//rev_rotate_a(&head_A);
 		//rev_rotate_b(&head_B);
-		// if	(argc == 4)
-		//sorting_three(&head_A);		
+		if	(argc == 4)
+			sorting_three(&head_A);		
 		print_lst(head_A);
 	}
 	return 0 ;

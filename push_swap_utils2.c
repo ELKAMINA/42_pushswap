@@ -50,6 +50,22 @@ void rr(t_list **a, t_list **b)
     //write (1, "rr\n", 3);
 }
 
+// void rev_rotate_a(t_list **a)
+// {
+//     t_list  *newNode;
+
+//     newNode = *a;
+//     if (!*a || !(*a)->next)
+//         return ;
+//     while (newNode -> next -> next)
+//         newNode = newNode -> next;
+//     newNode -> next -> next = *a;
+//     *a = (*a) -> next;
+//     newNode -> next -> next -> next = NULL;
+//     newNode -> next -> next -> previous = newNode -> next;
+//     //write (1, "rra\n", 4);
+// }
+
 void rev_rotate_a(t_list **a)
 {
     t_list  *newNode;
@@ -60,9 +76,9 @@ void rev_rotate_a(t_list **a)
     while (newNode -> next -> next)
         newNode = newNode -> next;
     newNode -> next -> next = *a;
-    *a = (*a) -> next;
-    newNode -> next -> next -> next = NULL;
-    newNode -> next -> next -> previous = newNode -> next;
+    newNode -> previous -> previous = newNode -> next;
+    *a = newNode -> next;
+    newNode -> next = NULL;
     //write (1, "rra\n", 4);
 }
 

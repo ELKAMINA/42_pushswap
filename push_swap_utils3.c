@@ -65,7 +65,6 @@ void sorting_three(t_list **head)
 
 void sorting_five(t_list **head_A, t_list **head_B)
 {
-    // int nb1;
     // int nb2;
     // int nb3;
 
@@ -74,22 +73,29 @@ void sorting_five(t_list **head_A, t_list **head_B)
     // nb3 = (*head)->next->next->data;
     // nb4 = nb3->next->data;
     // nb5 = nb4->next->data;
-
     //printf("_____%d %d %d_______\n", nb1, nb2, nb3);
-    push_b(head_B, head_A);
-    push_b(head_B, head_A);
-    sorting_three(head_A);
-    push_a(head_A, head_B);
-    rotate_a(head_A);
-    push_a(head_A, head_B);
+    while (*head_A)
+	{
+        if  ((*head_A)->data == lower(head_A))
+        {
+            push_b(head_B, head_A);
+            break ;
+        }
+        *head_A = (*head_A) -> next;
+	}
     while (*head_A)
 	{
 		printf("A = [%d]\n", (*head_A)->data);
 		*head_A = (*head_A)->next;
 	}
-    while (*head_B)
-	{
-		printf("B = [%d]\n", (*head_B)->data);
-		*head_B = (*head_B)->next;
-	}
+    // push_b(head_B, head_A);
+    // sorting_three(head_A);
+    // push_a(head_A, head_B);
+    // rotate_a(head_A);
+    // push_a(head_A, head_B);
+    // while (*head_B)
+	// {
+	// 	printf("B = [%d]\n", (*head_B)->data);
+	// 	*head_B = (*head_B)->next;
+	// }
 }

@@ -37,7 +37,7 @@ void 	rev_rotate_a(t_list **a);
 void 	rev_rotate_b(t_list **b);
 void 	sorting_three(t_list **head_A);
 void 	sorting_five(t_list **head_A, t_list **head_B);
-int 	higher(t_list   **head);
+int		higher(t_list   **head);
 int 	lower(t_list   **head);
 
 #endif

@@ -59,6 +59,7 @@ void sorting_three(t_list **head)
     }
     else if (nb1 < nb2 && nb2 > nb3 && nb3 < nb1)
         rev_rotate_a(head);
+
     else
         return ;
 }

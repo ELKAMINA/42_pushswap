@@ -83,7 +83,7 @@ int main (int   argc, char  *argv[])
 {
 	int n;
 	t_list *head_A;
-	t_list *head_B;
+	//t_list *head_B;
 
 	n = argc - 1;
 	if (argc < 2)
@@ -96,19 +96,19 @@ int main (int   argc, char  *argv[])
 	else 
 	{
 		head_A = create_A(argc, argv);
-		head_B = NULL;
+		//head_B = NULL;
 		//swap_a(&head_A);
 		// swap_b(head_B);
 		//push_a(&head_A, &head_B);
 		//push_b(&head_B, &head_A);
 		//rotate_a(&head_A);
-		//print_lst(head_A);
 		//rev_rotate_a(&head_A);
 		//rev_rotate_b(&head_B);
-		// if	(argc > 2 && argc < 4)
-		// 	sorting_three(&head_A);	
-		if	(argc > 3 && argc <= 6)
-			sorting_five(&head_A, &head_B);
+		if	(argc > 2 && argc < 5)
+			sorting_three(&head_A);	
+		print_lst(head_A);
+		// if	(argc > 3 && argc <= 6)
+		// 	sorting_five(&head_A, &head_B);
 		// printf("%d", higher(&head_A));
 		//printf("%d", lower(&head_A));
 	}

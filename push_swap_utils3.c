@@ -64,6 +64,21 @@ void sorting_three(t_list **head)
         return ;
 }
 
+void sorting_four(t_list **head_A)
+//void sorting_four(t_list **head_A, t_list **head_B)
+{
+ t_list *smallest;
+
+ smallest = *head_A;
+  printf("%d\n",smallest->next->data);
+ while (smallest->data != lower(head_A))
+    smallest =  smallest->next;
+//  smallest = smallest -> next;
+//  printf("%d\n", smallest->data);
+
+ 
+}
+
 void sorting_five(t_list **head_A, t_list **head_B)
 {
     // int nb2;

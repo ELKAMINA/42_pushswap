@@ -102,10 +102,14 @@ void rev_rotate_a(t_list **a)
         return ;
     while (newNode -> next -> next)
         newNode = newNode -> next;
-    newNode -> next -> next = *a;
-    newNode -> previous -> previous = newNode -> next;
-    *a = newNode -> next;
-    newNode -> next = NULL;
+    // newNode -> next -> next = *a;
+    // newNode -> previous -> previous = newNode -> next;
+    // *a = newNode -> next;
+    // newNode -> next = NULL;
+    newNode->next->next = *a;
+    newNode->previous->previous = newNode->next;
+    *a = newNode->previous->previous;
+    newNode->next = NULL;
     //write (1, "rra\n", 4);
 }
 

@@ -42,7 +42,7 @@ void sorting_three(t_list **head)
     nb2 = (*head)->next->data;
     nb3 = (*head)->next->next->data;
 
-    //printf("_____%d %d %d_______\n", nb1, nb2, nb3);
+    // printf("_____%d %d %d_______\n", nb1, nb2, nb3);
     if (nb1 > nb2 && nb2 < nb3 && nb3 > nb1)
         swap_a(head);
     else if (nb1 > nb2 && nb2 > nb3 && nb3 < nb1)
@@ -51,67 +51,137 @@ void sorting_three(t_list **head)
         rev_rotate_a(head);
     }
     else if (nb1 > nb2 && nb2 < nb3 && nb3 < nb1)
+    {
         rotate_a(head);
+    }
     else if (nb1 < nb2 && nb2 > nb3 && nb3 > nb1)
     {
         swap_a(head);
         rotate_a(head);
     }
     else if (nb1 < nb2 && nb2 > nb3 && nb3 < nb1)
+    {
         rev_rotate_a(head);
-
+        printf("_____%d %d %d_______\n", (*head)->data, (*head)->next->data, (*head)->next->next->data);
+    }
     else
+    {
         return ;
+    }
 }
 
-void sorting_four(t_list **head_A)
+void sorting_four(t_list **head_A, t_list **head_B)
 //void sorting_four(t_list **head_A, t_list **head_B)
 {
- t_list *smallest;
+t_list *a;
+t_list *b;
+t_list *less;
+int lst_size;
+int index_lower;
+int smallest;
 
- smallest = *head_A;
-  printf("%d\n",smallest->next->data);
- while (smallest->data != lower(head_A))
-    smallest =  smallest->next;
-//  smallest = smallest -> next;
-//  printf("%d\n", smallest->data);
+less = (*head_A);
+a = (*head_A);
+b = (*head_B);
+lst_size = ft_lstsize(a);
+index_lower = 1;
+smallest = lower(&a);
+printf("(%d)\n", lst_size);
+while(less-> data != smallest)
+{
+    index_lower++;
+    less = less -> next;
+}
+//printf("(%d)\n", index_lower);
+if (index_lower == lst_size)
+{
+   rev_rotate_a(head_A);
+   push_b(head_B, head_A); 
+}
+else if (index_lower == lst_size - 1)
+{
+    rotate_a(head_A);
+    rotate_a(head_A);
+    push_b(head_B, head_A); 
+}
+else if (index_lower == lst_size - 2)
+{
+    swap_a(head_A);
+    push_b(head_B, head_A); 
+}
+else
+{
+    push_b(head_B, head_A);
+}
+sorting_three(head_A);
+// while((*head_A) != NULL)
+// {
+//     printf("(%d)", (*head_A)->data);
+//     *head_A = (*head_A)->next;
+// }
+push_a(head_A, head_B);
+}
 
- 
+void check_pos_and_push(t_list **head_A, t_list **head_B, int lst_size)
+{
+t_list *a;
+t_list *less;
+t_list *b;
+int index_lower;
+int smallest;
+
+less = (*head_A);
+a = (*head_A);
+b = (*head_B);
+index_lower = 1;
+smallest = lower(&a);
+//printf("%d", smallest);
+//printf("(%d)\n", lst_size);
+//printf("%d", (*head_B)->data);
+while(less->data != smallest)
+{
+    index_lower++;
+    less = less->next;
+}
+//printf("(%d)\n", index_lower);
+if (index_lower == lst_size)
+{
+   rev_rotate_a(head_A);
+   push_b(head_B, head_A); 
+}
+else if (index_lower == lst_size - 1)
+{
+    rev_rotate_a(head_A);
+    rev_rotate_a(head_A);
+    push_b(head_B, head_A); 
+}
+else if (index_lower == lst_size - 2)
+{
+    rotate_a(head_A);
+    rotate_a(head_A);
+    push_b(head_B, head_A);
+}
+else if (index_lower == 2)
+{
+    swap_a(head_A);
+    push_b(head_B, head_A);
+}
+else
+    push_b(head_B, head_A);
 }
 
 void sorting_five(t_list **head_A, t_list **head_B)
 {
-    // int nb2;
-    // int nb3;
+    int size;
+    t_list *a;
+    t_list *b;
 
-    // nb1 = (*head)->data;
-    // nb2 = (*head)->next->data;
-    // nb3 = (*head)->next->next->data;
-    // nb4 = nb3->next->data;
-    // nb5 = nb4->next->data;
-    //printf("_____%d %d %d_______\n", nb1, nb2, nb3);
-    while (*head_A)
-	{
-        if  ((*head_A)->data == lower(head_A))
-        {
-            push_b(head_B, head_A);
-            break ;
-        }
-        *head_A = (*head_A) -> next;
-	}
-    while (*head_A)
-	{
-		printf("A = [%d]\n", (*head_A)->data);
-		*head_A = (*head_A)->next;
-	}
-    // push_b(head_B, head_A);
-    // sorting_three(head_A);
-    // push_a(head_A, head_B);
-    // rotate_a(head_A);
-    // push_a(head_A, head_B);
-    // while (*head_B)
-	// {
-	// 	printf("B = [%d]\n", (*head_B)->data);
-	// 	*head_B = (*head_B)->next;
-	// }
+    a = (*head_A);
+    b = (*head_B);
+    size = ft_lstsize(a);
+    check_pos_and_push(head_A, head_B, size);
+    sorting_four(head_A, head_B);
+    push_a(head_A, head_B);
+    //printf("%d", size);
+    // printf("%d", (*head_B)->data);
 }

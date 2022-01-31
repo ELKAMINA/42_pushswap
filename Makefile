@@ -7,7 +7,7 @@ NAME = pushswap
 
 SRC = ft_atol.c  ft_lstadd_back.c  ft_lstadd_front.c  ft_lstlast.c  ft_lstsize.c \
 ft_lstnew.c ft_swap.c  push_swap.c push_swap_utils.c\
-push_swap_utils2.c push_swap_utils3.c \
+push_swap_utils2.c push_swap_utils3.c push_swap_utils4.c\
 
 OBJ = $(SRC:.c=.o)
 

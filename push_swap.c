@@ -108,13 +108,19 @@ int main (int   argc, char  *argv[])
 		// 	sorting_three(&head_A);	
 		// if	(argc > 3 && argc < 6)
 		// 	sorting_four(&head_A, &head_B);
-		if	(argc > 4 && argc < 7)
+		// if	(argc > 4 && argc < 7)
+		// {
+		// 	sorting_five(&head_A, &head_B);
+		// 	// sorting_three(&head_A);
+		// 	// push_a(&head_A, &head_B);
+		// }
+		if	(argc > 5 && argc < 100)
 		{
-			sorting_five(&head_A, &head_B);
+			sorting_under_hundred(&head_A, &head_B);
 			// sorting_three(&head_A);
 			// push_a(&head_A, &head_B);
 		}
-		print_lst(head_A);
+		print_lst(head_B);
 		//print_lst(head_B);
 		// printf("%d", higher(&head_A));
 		// printf("%d", lower(&head_A));

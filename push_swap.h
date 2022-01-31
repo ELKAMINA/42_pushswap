@@ -42,5 +42,7 @@ int		higher(t_list   **head);
 int 	lower(t_list   **head);
 void 	sorting_four(t_list **head_A, t_list **head_B);
 void 	sorting_five(t_list **head_A, t_list **head_B);
+int 	calc_median(t_list **head);
+void sorting_under_hundred(t_list **head_A, t_list **head_B);
 
 #endif

@@ -45,7 +45,7 @@ t_list *create_A(int argc, char *argv[])
 
 	n = argc - 1;
 	i = 3;
-
+	//printf("%d", n);
 	head_A = ft_lstnew((int)ft_atol(argv[1]));
 	current_A = ft_lstnew((int)ft_atol(argv[2]));
 	head_A -> next = current_A;
@@ -59,6 +59,7 @@ t_list *create_A(int argc, char *argv[])
 	//je recupere et je parse mes arguments et je les affiche
 	return (head_A);
 }
+
 t_list *create_B()
 {
 	t_list *head_B;
@@ -120,7 +121,7 @@ int main (int   argc, char  *argv[])
 			// sorting_three(&head_A);
 			// push_a(&head_A, &head_B);
 		}
-		print_lst(head_B);
+		print_lst(head_A);
 		//print_lst(head_B);
 		// printf("%d", higher(&head_A));
 		// printf("%d", lower(&head_A));

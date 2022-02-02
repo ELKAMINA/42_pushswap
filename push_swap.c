@@ -121,7 +121,7 @@ int main (int   argc, char  *argv[])
 			// sorting_three(&head_A);
 			// push_a(&head_A, &head_B);
 		}
-		print_lst(head_A);
+		//print_lst(head_B);
 		//print_lst(head_B);
 		// printf("%d", higher(&head_A));
 		// printf("%d", lower(&head_A));

@@ -58,15 +58,18 @@ void sorting_under_hundred(t_list **head_A, t_list **head_B)
     bais = *head_B;
     i = 1;
     median = calc_median(head_A);
-    copy = *head_A;
+    copy = NULL;
     // printf("%d", copy->data);
     pos = 1;
     while (copy)
     {
+        //copy = *head_A;
+        //printf("[%d]\n", copy->data);
+        //printf("[%d]\n", (*head_A)->next->data);
         if (copy->data < median)
         {
             pos = update_pos(head_A, copy);
-            // printf("{%d}", pos);
+            //printf("{%d}", pos);
             //printf("{%d}", middle(head_A));
             if (pos >= middle(head_A)){
                 while (i < pos)
@@ -75,18 +78,26 @@ void sorting_under_hundred(t_list **head_A, t_list **head_B)
                     i++;
                 }
                 push_b(head_B, head_A);
-                // copy = *head_A;
-                // pos = update_pos(head_A, copy);
+                //copy = *head_A;
             }
-            // else 
-            // {
-            //       while (i < pos)
-            //         rev_rotate_a(head_A);
-            // }
-            //printf("(%d)", copy->data);
+            else 
+            {
+                while (i < pos)
+                {
+                    rev_rotate_a(head_A);
+                    i++;
+                }
+                push_b(head_B, head_A);
+                //copy = *head_A;
+            }
         }
+        // copy = *head_A;
+        // pos = 1;
         // else 
         //     copy = copy->next;
+        // copy = *head_A;
+        // pos = 1;
         copy = copy->next;
     }
 }
+

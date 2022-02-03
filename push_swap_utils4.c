@@ -51,6 +51,62 @@ int middle (t_list **head)
     return (mid);
 }
 
+void sortList_ascending(t_list **head) {  
+    //Node current will point to head  
+    t_list *current = *head;
+    t_list *index = NULL;  
+    int temp;  
+        
+    if(*head == NULL) {  
+        return;  
+    }  
+    else {  
+        while(current != NULL) {  
+            //Node index will point to node next to current  
+            index = current->next;  
+                
+            while(index != NULL) {  
+                //If current node's data is greater than index's node data, swap the data between them  
+                if(current->data > index->data) {  
+                    temp = current->data;  
+                    current->data = index->data;  
+                    index->data = temp;  
+                }  
+                index = index->next;  
+            }  
+            current = current->next;  
+        }      
+    }  
+}  
+
+void sortList_descending(t_list **head) {  
+    //Node current will point to head  
+    t_list *current = *head;
+    t_list *index = NULL;  
+    int temp;  
+        
+    if(*head == NULL) {  
+        return;  
+    }  
+    else {  
+        while(current != NULL) {  
+            //Node index will point to node next to current  
+            index = current->next;  
+                
+            while(index != NULL) {  
+                //If current node's data is greater than index's node data, swap the data between them  
+                if(current->data < index->data) {  
+                    temp = current->data;  
+                    current->data = index->data;  
+                    index->data = temp;  
+                }  
+                index = index->next;  
+            }  
+            current = current->next;  
+        }      
+    }  
+}  
+
 void sorting_under_hundred(t_list **head_A, t_list **head_B)
 {
     int median;
@@ -102,7 +158,9 @@ void sorting_under_hundred(t_list **head_A, t_list **head_B)
         }
         else 
             copy = copy->next;
-    }     
+    }
+    sortList_ascending(head_A);
+    sortList_descending(head_B);
 }
 
 

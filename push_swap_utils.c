@@ -83,7 +83,6 @@ void push_a(t_list **dest, t_list **src)
     if (*src == NULL) {
         return;
     }
- 
     newNode = *src;  // the front source node
     *src = (*src)->next;    // advance the source pointer
     newNode->next = *dest;           // link the old dest off the new node
@@ -99,8 +98,10 @@ void push_b(t_list **dest, t_list **src)
         return ;
     }
     newNode = *src;  // the front source node
-    *src = (*src)->next;    // advance the source pointer
+    *src = (*src)->next;
+    (*src)-> previous = NULL;    // advance the source pointer
     newNode->next = *dest;           // link the old dest off the new node
     *dest = newNode; 
+    (*dest)-> previous = NULL; 
     //write(1, "pb\n", 3);
 }

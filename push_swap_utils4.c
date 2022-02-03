@@ -106,19 +106,48 @@ void sortList_descending(t_list **head) {
         }      
     }  
 }  
+// struct Node* merge(struct Node* a, struct Node* b)
+// {
+//     // base cases
+//     if (a == NULL) {
+//         return b;
+//     }
+ 
+//     if (b == NULL) {
+//         return a;
+//     }
+ 
+//     // pick either `a` or `b`, and recur
+//     if (a->data <= b->data)
+//     {
+//         a->next = merge(a->next, b);
+//         a->next->prev = a;
+//         a->prev = NULL;
+//         return a;
+//     }
+//     else {
+//         b->next = merge(a, b->next);
+//         b->next->prev = b;
+//         b->prev = NULL;
+//         return b;
+//     }
+// }
 
 void sorting_under_hundred(t_list **head_A, t_list **head_B)
 {
     int median;
     t_list  *bais;
     t_list  *copy;
+    int length;
     int pos;
     int i;
     int j;
+    int k;
 
     bais = *head_B;
     i = 1;
     j = 1;
+    k = 0;
     median = calc_median(head_A);
     copy = *head_A;
     pos = 1;
@@ -161,6 +190,12 @@ void sorting_under_hundred(t_list **head_A, t_list **head_B)
     }
     sortList_ascending(head_A);
     sortList_descending(head_B);
+    length = ft_lstsize(*head_B);
+    while (k < length)
+    {
+        push_a(head_A, head_B);
+        k++;
+    }
 }
 
 

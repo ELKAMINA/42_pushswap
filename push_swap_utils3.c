@@ -32,6 +32,15 @@ int lower(t_list   **head)
     return (min);
 }
 
+void sorting_one(t_list **head)
+{
+    t_list *first;
+
+    first = *head;
+    if (first -> next == NULL)
+        return ;
+}
+
 void sorting_two(t_list **head)
 {
     t_list *first;

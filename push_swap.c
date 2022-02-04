@@ -1,19 +1,19 @@
 #include "push_swap.h"
 
-int	check_args(char	*argv[])
-{
-	int	i; 
+// int	check_args(char	*argv[])
+// {
+// 	int	i; 
 
-	i = 1;
-	while (argv[i])
-	{
+// 	i = 1;
+// 	while (argv[i])
+// 	{
 		
-		if	(*argv[i] < 48 || *argv[i] > 57)
-			return (0);
-		i ++;
-	}
-	return (1);
-}
+// 		if	(*argv[i] < 48 || *argv[i] > 57)
+// 			return (0);
+// 		i ++;
+// 	}
+// 	return (1);
+// }
 
 int check_dup(char *argv[], int n)
 {
@@ -46,15 +46,24 @@ t_list *create_A(int argc, char *argv[])
 	n = argc - 1;
 	i = 3;
 	//printf("%d", n);
-	head_A = ft_lstnew((int)ft_atol(argv[1]));
-	current_A = ft_lstnew((int)ft_atol(argv[2]));
-	head_A -> next = current_A;
-	current_A -> previous = head_A;
-	while (i <= n)
+	if (n == 1)
 	{
-		current_A = ft_lstnew((int)ft_atol(argv[i]));
-		ft_lstadd_back(&head_A, current_A);
-		i++;
+		head_A = ft_lstnew((int)ft_atol(argv[1]));
+		head_A->next = NULL;
+		head_A->previous = NULL;
+	}
+	else 
+	{
+		head_A = ft_lstnew((int)ft_atol(argv[1]));
+		current_A = ft_lstnew((int)ft_atol(argv[2]));
+		head_A -> next = current_A;
+		current_A -> previous = head_A;
+		while (i <= n)
+		{
+			current_A = ft_lstnew((int)ft_atol(argv[i]));
+			ft_lstadd_back(&head_A, current_A);
+			i++;
+		}
 	}
 	//je recupere et je parse mes arguments et je les affiche
 	return (head_A);
@@ -89,7 +98,7 @@ int main (int   argc, char  *argv[])
 	n = argc - 1;
 	if (argc < 2)
 		return 0;
-	if	(check_args(argv) == 0 || check_dup(argv, n) == 0)
+	if	(check_dup(argv, n) == 0)
 	{
 		write (2, "Error\n", 6);
 		return 0;
@@ -105,24 +114,26 @@ int main (int   argc, char  *argv[])
 		//rotate_a(&head_A);
 		//rev_rotate_a(&head_A);
 		//rev_rotate_b(&head_B);	
+		// if	(argc == 2)
+		// 	sorting_one(&head_A);;	
 		if	(argc == 3)
 			sorting_two(&head_A);	
-		// if	(argc > 2 && argc < 5)
-		// 	sorting_three(&head_A);	
-		// if	(argc > 3 && argc < 6)
-		// 	sorting_four(&head_A, &head_B);
-		// if	(argc > 4 && argc < 7)
-		// {
-		// 	sorting_five(&head_A, &head_B);
-		// 	// sorting_three(&head_A);
-		// 	// push_a(&head_A, &head_B);
-		// }
-		// if	(argc > 5 && argc < 100)
-		// {
-		// 	sorting_under_hundred(&head_A, &head_B);
-		// 	// sorting_three(&head_A);
-		// 	// push_a(&head_A, &head_B);
-		// }
+		if	(argc > 2 && argc < 5)
+			sorting_three(&head_A);	
+		if	(argc > 3 && argc < 6)
+			sorting_four(&head_A, &head_B);
+		if	(argc > 4 && argc < 7)
+		{
+			sorting_five(&head_A, &head_B);
+			// sorting_three(&head_A);
+			// push_a(&head_A, &head_B);
+		}
+		if	(argc > 5 && argc < 100)
+		{
+			sorting_under_hundred(&head_A, &head_B);
+			// sorting_three(&head_A);
+			// push_a(&head_A, &head_B);
+		}
 		write(1, "A\n", 2);
 		print_lst(head_A);
 		write(1, "B\n", 2);

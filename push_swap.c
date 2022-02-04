@@ -104,7 +104,9 @@ int main (int   argc, char  *argv[])
 		//push_b(&head_B, &head_A);
 		//rotate_a(&head_A);
 		//rev_rotate_a(&head_A);
-		//rev_rotate_b(&head_B);
+		//rev_rotate_b(&head_B);	
+		if	(argc == 3)
+			sorting_two(&head_A);	
 		// if	(argc > 2 && argc < 5)
 		// 	sorting_three(&head_A);	
 		// if	(argc > 3 && argc < 6)
@@ -115,12 +117,12 @@ int main (int   argc, char  *argv[])
 		// 	// sorting_three(&head_A);
 		// 	// push_a(&head_A, &head_B);
 		// }
-		if	(argc > 5 && argc < 100)
-		{
-			sorting_under_hundred(&head_A, &head_B);
-			// sorting_three(&head_A);
-			// push_a(&head_A, &head_B);
-		}
+		// if	(argc > 5 && argc < 100)
+		// {
+		// 	sorting_under_hundred(&head_A, &head_B);
+		// 	// sorting_three(&head_A);
+		// 	// push_a(&head_A, &head_B);
+		// }
 		write(1, "A\n", 2);
 		print_lst(head_A);
 		write(1, "B\n", 2);

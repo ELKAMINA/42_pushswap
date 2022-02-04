@@ -32,6 +32,19 @@ int lower(t_list   **head)
     return (min);
 }
 
+void sorting_two(t_list **head)
+{
+    t_list *first;
+    t_list *second;
+
+    first = *head;
+    second = first->next;
+    if (first->data > second->data)
+        swap_a(head);
+    else
+        return ;
+}
+
 void sorting_three(t_list **head)
 {
     int nb1;

@@ -108,7 +108,7 @@ b = (*head_B);
 lst_size = ft_lstsize(a);
 index_lower = 1;
 smallest = lower(&a);
-printf("(%d)\n", lst_size);
+// printf("(%d)\n", lst_size);
 while(less-> data != smallest)
 {
     index_lower++;

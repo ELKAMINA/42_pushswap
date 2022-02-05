@@ -13,6 +13,7 @@ void	partitionning();
 typedef struct s_list
 {
 	int			    data;
+	int				sort;
 	struct s_list	*previous;
 	struct s_list	*next;
 }					t_list;
@@ -36,7 +37,6 @@ void 	rotate_b(t_list **b);
 void 	rotate_rr(t_list **a);
 void 	rev_rotate_a(t_list **a);
 void 	rev_rotate_b(t_list **b);
-void 	sorting_one(t_list **head);
 void 	sorting_two(t_list **head_A);
 void 	sorting_three(t_list **head_A);
 //void 	sorting_four(t_list **head_A, t_list **head_B);
@@ -45,6 +45,8 @@ int 	lower(t_list   **head);
 void 	sorting_four(t_list **head_A, t_list **head_B);
 void 	sorting_five(t_list **head_A, t_list **head_B);
 int 	calc_median(t_list **head);
-void sorting_under_hundred(t_list **head_A, t_list **head_B);
+// void 	sorting_under_hundred(t_list **head_A, t_list **head_B);
+void 	sorting_above_six(t_list **head_A, t_list **head_B);
+void 	circularing_LL(t_list **A);
 
 #endif

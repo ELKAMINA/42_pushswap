@@ -61,11 +61,11 @@ long	ft_atol(const char	*str)
 	{
 		nb = nb * 10 + (str[i] - '0');
 		i++;
-		if (nb * sign > 2147483647 || nb * sign < -2147483648)
-		{
-			write(2, "Error\n", 6);
-			break ;
-		}
+		// if (nb * sign > 2147483647 || nb * sign < -2147483648)
+		// {
+		// 	write(2, "Error\n", 6);
+		// 	break ;
+		// }
 	}
 	return (nb * sign);
 }

@@ -45,7 +45,7 @@ void rotate_a(t_list **a)
     newNode -> next -> next -> next =  NULL;
     //Ici, Head prend donc la valeur de newNode -> next, qui est la derniere valeur.
     //newNode-> next -> next -> next = NULL;
-    //     //write(1, "ra\n", 3);
+    write(1, "ra\n", 3);
 }
 
 void rotate_b(t_list **b)
@@ -67,14 +67,14 @@ void rotate_b(t_list **b)
     //Ici, Head prend donc la valeur de newNode -> next, qui est la derniere valeur.
     newNode -> previous = NULL;
     *b = newNode;
-    //     //write(1, "rb\n", 3);
+    write(1, "rb\n", 3);
 }
 
 void rr(t_list **a, t_list **b)
 {
     rotate_a(&*a);
     rotate_b(&*b);
-    //write (1, "rr\n", 3);
+    write (1, "rr\n", 3);
 }
 
 // void rev_rotate_a(t_list **a)
@@ -110,7 +110,7 @@ void rev_rotate_a(t_list **a)
     newNode->previous->previous = newNode->next;
     *a = newNode->previous->previous;
     newNode->next = NULL;
-    //write (1, "rra\n", 4);
+    write (1, "rra\n", 4);
 }
 
 void rev_rotate_b(t_list **b)
@@ -126,5 +126,5 @@ void rev_rotate_b(t_list **b)
     newNode -> previous -> previous = newNode -> next;
     *b = newNode -> next;
     newNode -> next = NULL;
-    //write (1, "rrb\n", 4);
+    write (1, "rrb\n", 4);
 }

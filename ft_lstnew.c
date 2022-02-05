@@ -11,5 +11,6 @@ t_list	*ft_lstnew(int	argument)
 	new -> data = argument;
 	new -> next = NULL;
 	new -> previous = NULL;
+	new->sort = 1;
 	return (new);
 }

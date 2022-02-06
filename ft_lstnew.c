@@ -12,5 +12,6 @@ t_list	*ft_lstnew(int	argument)
 	new -> next = NULL;
 	new -> previous = NULL;
 	new->sort = 1;
+	new->boolean = 'F';
 	return (new);
 }

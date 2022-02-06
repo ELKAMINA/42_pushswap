@@ -67,7 +67,7 @@ void circularing_LL(t_list **A)
 void 	sorting_above_six(t_list **head_A, t_list **head_B)
 {
     t_list *copy;
-    t_list *test;
+    // t_list *test;
     t_list *moving;
     t_list *current;
     t_list  *bais;
@@ -76,7 +76,7 @@ void 	sorting_above_six(t_list **head_A, t_list **head_B)
 
     bais = *head_B;
     i = 0;
-    test = (*head_A)->next;
+    // test = (*head_A);
     size = ft_lstsize(*head_A);
     circularing_LL(head_A);
     copy = *head_A;
@@ -96,11 +96,69 @@ void 	sorting_above_six(t_list **head_A, t_list **head_B)
         copy = copy->next;
         i++;
     }
-    while(test->data != (*head_A)->data)
+    node_to_sendtoB(head_A, size);
+    // i = 0;
+    // while(i < size)
+    // {
+    //     printf("[%d] --- {%d}\n", test->data, test->sort);
+    //     test = test->next;
+    //     i++;
+    // }
+}
+
+int max_sort(t_list   **head, int size)
+{
+    int min_int;
+    int max;
+    int i;
+    
+    i = 0;
+    min_int = -32767;
+    max = min_int;
+    while (i < size)
     {
-        printf("{%d}\n", test->sort);
-        test = test->next;
+        if  (max < (*head)->sort)
+            max = (*head)->sort;
+        *head = (*head)->next;
+        i++;
     }
+    return (max);
+}
+
+void node_to_sendtoB(t_list **A, int size)
+{
+    t_list *copy;
+    int sort_max;
+    t_list *moving;
+    t_list *current;
+    t_list  *test;
+    int     i;
+
+    copy = *A;
+    test = (*A);
+    sort_max = max_sort(A, size);
+    while (copy->sort != sort_max)
+        copy = copy->next;
+    copy->boolean = 'T';
+    moving = copy;
+    current = copy->next;
+    while (current != copy)
+    {
+        if (current->data > moving->data)
+        {
+            moving = current;
+            moving->boolean = 'T';
+        }
+        current = current->next;
+    }
+    i = 0;
+    while(i < size)
+    {
+        printf("[%d] --- {%c}\n", test->data, test->boolean);
+        test = test->next;
+        i++;
+    }
+
 }
 // void sorting_under_hundred(t_list **head_A, t_list **head_B)
 // {

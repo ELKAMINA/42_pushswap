@@ -14,6 +14,7 @@ typedef struct s_list
 {
 	int			    data;
 	int				sort;
+	char			boolean;
 	struct s_list	*previous;
 	struct s_list	*next;
 }					t_list;
@@ -48,5 +49,7 @@ int 	calc_median(t_list **head);
 // void 	sorting_under_hundred(t_list **head_A, t_list **head_B);
 void 	sorting_above_six(t_list **head_A, t_list **head_B);
 void 	circularing_LL(t_list **A);
+void 	node_to_sendtoB(t_list **A, int size);
+int 	max_sort(t_list   **head, int size);
 
 #endif

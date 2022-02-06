@@ -83,7 +83,7 @@ void	print_lst(t_list  *start)
 	temp = start;
 	while (temp)
 	{
-		printf("[%d]\n", temp->data);
+		printf("DATA = [%d]\n", temp->data);
 		temp = temp->next;
 	}
 }

@@ -5,7 +5,7 @@ int higher(t_list   **head)
     int min_int;
     int max;
     
-    min_int = -32767;
+    min_int = -2147483648;
     max = min_int;
     while ( *head != NULL)
     {
@@ -21,7 +21,7 @@ int lower(t_list   **head)
     int max_int;
     int min;
     
-    max_int = 32767;
+    max_int = 2147483647;
     min = max_int;
     while ( *head != NULL)
     {

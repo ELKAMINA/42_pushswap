@@ -56,24 +56,15 @@ void cost_calculation_pushtoB(t_list **head_A, t_list **head_B, int size)
     int pos;
     int i;
     int j;
+    int real_size;
 
     i = 0;
-    j = 0;
+    j = 1;
     copy = *head_A;
     test = *head_B;
+    real_size = size;
     pos = 1;
-    //printf("%d\n", size);
-    // while(i < size)
-    // {
-    //     pos = update_pos(head_A, copy);
-    //     printf("%d --- %d\n", copy->data, pos);
-    //     copy = copy->next;
-    //     i++;
-    // }
-    // pos = update_pos(head_A, copy, size);
-    // printf("%d \n", pos);
-    // printf("%d \n", (*head_A)->data);
-    while (j < size)
+    while (j < real_size)
     {
         if (copy->boolean == 'F')
         {
@@ -105,6 +96,8 @@ void cost_calculation_pushtoB(t_list **head_A, t_list **head_B, int size)
                 }
                 push_b(head_B, head_A);
             }
+            // printf("COPY if boolean == (%d)\n", copy->data);
+            // printf("HEAD A if boolean == (%d)\n", (*head_A)->data);  
             copy = *head_A;
             size--;
         }
@@ -112,6 +105,7 @@ void cost_calculation_pushtoB(t_list **head_A, t_list **head_B, int size)
             copy = copy->next;
         j++;
     }
+    copy->next = NULL;
 }
 
 void circularing_LL(t_list **A)
@@ -135,7 +129,7 @@ int max_sort(t_list   **head, int size)
     int i;
     
     i = 0;
-    min_int = -32767;
+    min_int = -2147483648;
     max = min_int;
     while (i < size)
     {

@@ -15,6 +15,8 @@ typedef struct s_list
 	int			    data;
 	int				sort;
 	char			boolean;
+	int				pos;
+	int				moves;
 	struct s_list	*previous;
 	struct s_list	*next;
 }					t_list;
@@ -53,5 +55,6 @@ void 	circularing_LL(t_list **A);
 void 	node_to_sendtoB(t_list **A, t_list **head_B, int size);
 int 	max_sort(t_list   **head_A, int size);
 void 	cost_calculation_pushtoB(t_list **head_A, t_list **head_B, int size);
+void 	cost_calculation_toheadList(t_list **head_B);
 
 #endif

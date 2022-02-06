@@ -53,7 +53,6 @@ void cost_calculation_pushtoB(t_list **head_A, t_list **head_B, int size)
 {
     t_list  *copy;
     t_list  *test;
-    int pos;
     int i;
     int j;
     int real_size;
@@ -63,23 +62,22 @@ void cost_calculation_pushtoB(t_list **head_A, t_list **head_B, int size)
     copy = *head_A;
     test = *head_B;
     real_size = size;
-    pos = 1;
     while (j < real_size)
     {
         if (copy->boolean == 'F')
         {
-            pos = update_pos(head_A, copy, size);
+            copy->pos = update_pos(head_A, copy, size);
             //printf("(%d)", pos);
-            if (pos == 1)
+            if (copy->pos == 1)
                 push_b(head_B, head_A);
-            else if (pos == 2)
+            else if (copy->pos == 2)
             {
                 swap_a(head_A);
                 push_b(head_B, head_A);
             }
-            else if (pos <= middle(size))
+            else if (copy->pos <= middle(size))
             {
-                while (i < pos)
+                while (i < copy->pos)
                 {
                     rotate_a(head_A);
                     i++;
@@ -88,7 +86,7 @@ void cost_calculation_pushtoB(t_list **head_A, t_list **head_B, int size)
             }
             else
             {
-                i = pos;
+                i = copy->pos;
                 while (i <= size)
                 {
                     rev_rotate_a(head_A);
@@ -106,6 +104,47 @@ void cost_calculation_pushtoB(t_list **head_A, t_list **head_B, int size)
         j++;
     }
     copy->next = NULL;
+}
+
+void cost_calculation_toheadList(t_list **head)
+{
+    t_list *copy;
+    int size;
+    int i;
+    int j;
+
+    copy = *head;
+    i = 0;
+    j = 0;
+    size = ft_lstsize(*head);
+    printf("%d\n", size);
+    while (j < size)
+    {
+        copy->pos = update_pos(head, copy, size);
+        if (copy->pos == 1)
+            copy->moves += 0;
+        else if (copy->pos == 2)
+            copy->moves += 1;
+        else if (copy->pos <= middle(size))
+        {
+            while (i < copy->pos)
+            {
+                copy->moves += 1;
+                i++;
+            }
+        }
+        else
+        {
+            i = copy->pos;
+            while (i <= size)
+            {
+                copy->moves += 1;
+                i++;
+            }
+        }
+        j++;
+        copy = copy->next;
+    }
 }
 
 void circularing_LL(t_list **A)
@@ -177,16 +216,6 @@ void node_to_sendtoB(t_list **A, t_list **B, int size)
 
 }
 
-//     sortList_ascending(head_A);
-//     sortList_descending(head_B);
-//     length = ft_lstsize(*head_B);
-//     while (k < length)
-//     {
-//         push_a(head_A, head_B);
-//         k++;
-//     }
-// }
-
 void 	sorting_above_six(t_list **head_A, t_list **head_B)
 {
     t_list *copy;
@@ -220,6 +249,19 @@ void 	sorting_above_six(t_list **head_A, t_list **head_B)
         i++;
     }
     node_to_sendtoB(head_A, head_B, size);
+    // write(1, "A\n", 2);
+    // while (*head_A)
+	// {
+	// 	printf("DATA = [%d]\n", (*head_A)->data);
+	// 	*head_A = (*head_A)->next;
+	// }
+    cost_calculation_toheadList(head_B);
+    write(1, "B\n", 2);
+    while (*head_B)
+	{
+		printf("DATA = [%d]\n", (*head_B)->moves);
+		*head_B = (*head_B)->next;
+	}
     // i = 0;
     // while(i < size)
     // {

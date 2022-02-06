@@ -36,12 +36,10 @@ int update_pos(t_list **head, t_list *oneNode)
     return(pos);
 }
 
-int middle (t_list **head)
+int middle (int size)
 {
-    int size;
     int mid;
 
-    size = ft_lstsize(*head);
     if (size % 2 != 0)
     {
         mid = (size + 1) / 2;
@@ -49,6 +47,54 @@ int middle (t_list **head)
     else 
         mid = size / 2;
     return (mid);
+}
+
+void cost_calculation_pushtoB(t_list **head_A, t_list **head_B, int size)
+{
+    t_list  *copy;
+    int pos;
+    int i;
+
+    i = 0;
+    copy = *head_A;
+    pos = 1;
+    while (i < size)
+    {
+        if (copy->boolean == 'F')
+        {
+            pos = update_pos(head_A, copy);
+            if (pos == 1)
+                push_b(head_B, head_A);
+            else if (pos == 2)
+            {
+                swap_a(head_A);
+                push_b(head_B, head_A);
+            }
+            else if (pos <= middle(size))
+            {
+                while (i < pos)
+                {
+                    rotate_a(head_A);
+                    i++;
+                }
+                push_b(head_B, head_A);
+            }
+            else
+            {
+                i = pos;
+                while (i <= size)
+                {
+                    rev_rotate_a(head_A);
+                    i++;
+                }
+                push_b(head_B, head_A);
+            }
+        copy = *head_A;
+        }
+        else
+            copy = copy->next;
+        i++;
+    }
 }
 
 void circularing_LL(t_list **A)
@@ -63,6 +109,72 @@ void circularing_LL(t_list **A)
     copy->next = head;
     head->previous = copy;
 }
+
+
+int max_sort(t_list   **head, int size)
+{
+    int min_int;
+    int max;
+    int i;
+    
+    i = 0;
+    min_int = -32767;
+    max = min_int;
+    while (i < size)
+    {
+        if  (max < (*head)->sort)
+            max = (*head)->sort;
+        *head = (*head)->next;
+        i++;
+    }
+    return (max);
+}
+
+void node_to_sendtoB(t_list **A, t_list **B, int size)
+{
+    t_list *copy;
+    int sort_max;
+    t_list *moving;
+    t_list *current;
+    // t_list  *test;
+
+    copy = *A;
+    // test = (*A);
+    sort_max = max_sort(A, size);
+    while (copy->sort != sort_max)
+        copy = copy->next;
+    copy->boolean = 'T';
+    moving = copy;
+    current = copy->next;
+    while (current != copy)
+    {
+        if (current->data > moving->data)
+        {
+            moving = current;
+            moving->boolean = 'T';
+        }
+        current = current->next;
+    }
+    cost_calculation_pushtoB(A, B, size);
+    // i = 0;
+    // while(i < size)
+    // {
+    //     printf("[%d] --- {%c}\n", test->data, test->boolean);
+    //     test = test->next;
+    //     i++;
+    // }
+
+}
+
+//     sortList_ascending(head_A);
+//     sortList_descending(head_B);
+//     length = ft_lstsize(*head_B);
+//     while (k < length)
+//     {
+//         push_a(head_A, head_B);
+//         k++;
+//     }
+// }
 
 void 	sorting_above_six(t_list **head_A, t_list **head_B)
 {
@@ -96,7 +208,7 @@ void 	sorting_above_six(t_list **head_A, t_list **head_B)
         copy = copy->next;
         i++;
     }
-    node_to_sendtoB(head_A, size);
+    node_to_sendtoB(head_A, head_B, size);
     // i = 0;
     // while(i < size)
     // {
@@ -105,125 +217,5 @@ void 	sorting_above_six(t_list **head_A, t_list **head_B)
     //     i++;
     // }
 }
-
-int max_sort(t_list   **head, int size)
-{
-    int min_int;
-    int max;
-    int i;
-    
-    i = 0;
-    min_int = -32767;
-    max = min_int;
-    while (i < size)
-    {
-        if  (max < (*head)->sort)
-            max = (*head)->sort;
-        *head = (*head)->next;
-        i++;
-    }
-    return (max);
-}
-
-void node_to_sendtoB(t_list **A, int size)
-{
-    t_list *copy;
-    int sort_max;
-    t_list *moving;
-    t_list *current;
-    t_list  *test;
-    int     i;
-
-    copy = *A;
-    test = (*A);
-    sort_max = max_sort(A, size);
-    while (copy->sort != sort_max)
-        copy = copy->next;
-    copy->boolean = 'T';
-    moving = copy;
-    current = copy->next;
-    while (current != copy)
-    {
-        if (current->data > moving->data)
-        {
-            moving = current;
-            moving->boolean = 'T';
-        }
-        current = current->next;
-    }
-    i = 0;
-    while(i < size)
-    {
-        printf("[%d] --- {%c}\n", test->data, test->boolean);
-        test = test->next;
-        i++;
-    }
-
-}
-// void sorting_under_hundred(t_list **head_A, t_list **head_B)
-// {
-//     int median;
-//     t_list  *copy;
-//     int length;
-//     int pos;
-//     int i;
-//     int j;
-//     int k;
-
-//     i = 1;
-//     j = 1;
-//     k = 0;
-//     median = calc_median(head_A);
-//     copy = *head_A;
-//     pos = 1;
-
-//     while (copy != NULL)
-//     {
-
-//         // if (copy->data < median)
-//         // {
-//         //     pos = update_pos(head_A, copy);
-//         //     if (pos == 1)
-//         //         push_b(head_B, head_A);
-//         //     else if (pos == 2)
-//         //     {
-//         //         swap_a(head_A);
-//         //         push_b(head_B, head_A);
-//         //     }
-//         //     else if (pos <= middle(head_A))
-//         //     {
-//         //         while (i < pos)
-//         //         {
-//         //             rotate_a(head_A);
-//         //             i++;v
-//         //         }
-//         //         push_b(head_B, head_A);
-//         //     }
-//         //     else
-//         //     {
-//         //         i = pos;
-//         //         while (i <= ft_lstsize(*head_A))
-//         //         {
-//         //             rev_rotate_a(head_A);
-//         //             i++;
-//         //         }
-//         //         push_b(head_B, head_A);
-//         //     }
-//         //     copy = *head_A;
-//         //     i = 1;
-//         // }
-//         // else 
-//         //     copy = copy->next;
-//     }
-//     sortList_ascending(head_A);
-//     sortList_descending(head_B);
-//     length = ft_lstsize(*head_B);
-//     while (k < length)
-//     {
-//         push_a(head_A, head_B);
-//         k++;
-//     }
-// }
-
 
 

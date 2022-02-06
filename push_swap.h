@@ -46,10 +46,12 @@ int 	lower(t_list   **head);
 void 	sorting_four(t_list **head_A, t_list **head_B);
 void 	sorting_five(t_list **head_A, t_list **head_B);
 int 	calc_median(t_list **head);
+int 	middle (int size);
 // void 	sorting_under_hundred(t_list **head_A, t_list **head_B);
 void 	sorting_above_six(t_list **head_A, t_list **head_B);
 void 	circularing_LL(t_list **A);
-void 	node_to_sendtoB(t_list **A, int size);
-int 	max_sort(t_list   **head, int size);
+void 	node_to_sendtoB(t_list **A, t_list **head_B, int size);
+int 	max_sort(t_list   **head_A, int size);
+void 	cost_calculation_pushtoB(t_list **head_A, t_list **head_B, int size);
 
 #endif

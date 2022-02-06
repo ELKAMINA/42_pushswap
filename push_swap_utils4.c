@@ -16,9 +16,9 @@ int calc_median(t_list **head)
     return(median);
 }
 
-int update_pos(t_list **head, t_list *oneNode)
+int update_pos(t_list **head, t_list *oneNode, int size)
 {
-    int     size;
+    //int     size;
     int     i;
     int     pos;
     t_list *temp;
@@ -26,7 +26,7 @@ int update_pos(t_list **head, t_list *oneNode)
     temp = *head;
     i = 1;
     pos = 1;
-    size = ft_lstsize(*head);
+    //size = ft_lstsize(*head);
     while (temp->data != oneNode->data & i <= size)
     {
         pos++;
@@ -52,17 +52,33 @@ int middle (int size)
 void cost_calculation_pushtoB(t_list **head_A, t_list **head_B, int size)
 {
     t_list  *copy;
+    t_list  *test;
     int pos;
     int i;
+    int j;
 
     i = 0;
+    j = 0;
     copy = *head_A;
+    test = *head_B;
     pos = 1;
-    while (i < size)
+    //printf("%d\n", size);
+    // while(i < size)
+    // {
+    //     pos = update_pos(head_A, copy);
+    //     printf("%d --- %d\n", copy->data, pos);
+    //     copy = copy->next;
+    //     i++;
+    // }
+    // pos = update_pos(head_A, copy, size);
+    // printf("%d \n", pos);
+    // printf("%d \n", (*head_A)->data);
+    while (j < size)
     {
         if (copy->boolean == 'F')
         {
-            pos = update_pos(head_A, copy);
+            pos = update_pos(head_A, copy, size);
+            //printf("(%d)", pos);
             if (pos == 1)
                 push_b(head_B, head_A);
             else if (pos == 2)
@@ -89,11 +105,12 @@ void cost_calculation_pushtoB(t_list **head_A, t_list **head_B, int size)
                 }
                 push_b(head_B, head_A);
             }
-        copy = *head_A;
+            copy = *head_A;
+            size--;
         }
         else
             copy = copy->next;
-        i++;
+        j++;
     }
 }
 

@@ -263,18 +263,20 @@ int max_sort(t_list   **head, int size)
 int min_moves(t_list   **head, int size)
 {
     int min;
+    t_list *copy;
     int max_int;
     int i;
     
     i = 0;
+    copy = *head;
     max_int = 2147483647;
     min = max_int;
     while (i < size)
     {
-        //printf("[%d] ---- [%d]\n", (*head)->data, (*head)->total_moves);
-        if  (min > (*head)->total_moves)
-            min = (*head)->total_moves;
-        *head = (*head)->next;
+        //printf("FONCTION : [%d] ---- [%d]\n", copy->data, copy->total_moves);
+        if  (min > copy->total_moves)
+            min = copy->total_moves;
+        copy = copy->next;
         i++; 
     }
     return (min);
@@ -371,26 +373,29 @@ void pushing_to_A(t_list **head_A, t_list **head_B)
     copyA = *head_A;
     copyB = *head_B;    
     sec_copyB = *head_B;    
-    //cost_calculation_toheadList(head_B);
+    cost_calculation_toheadList(head_B);
+    get_cost_to_positionNodeB_inA(head_A, head_B);
     // printf("Total moves : [%d] **** %d\n", copyB->next->moves, copyB->next->data);
     i = 0;
     // on veut se placer au niveau du maillon dont le nombre total de mouvement est inférieur.
-    while(copyB && copyB->total_moves != min_moves((&sec_copyB), ft_lstsize(sec_copyB)))
+    //printf("MIN MVOES --> %d\n", min_moves((head_B), ft_lstsize(*head_B)));
+    //min_moves((head_B), ft_lstsize(*head_B));
+    // copyB = copyB->next->next;
+    while(copyB->total_moves != min_moves((&sec_copyB), ft_lstsize(sec_copyB)))
         copyB = copyB ->next;
-    //printf("--- %d --- \n", copyB->data);
-
-    // Ici, on envoie l'élement concerné à la tête de la liste
-    pushing_toheadListB(head_B, copyB->index);
-    // Ici, on checke à quel niveau dans A, il pouvoir se placer pour être dans l'ordre croissant.
+    //printf("--- %d --- \n", copyB->total_moves);
+    // // Ici, on envoie l'élement concerné à la tête de la liste
+    // pushing_toheadListB(head_B, copyB->index);
+    // // Ici, on checke à quel niveau dans A, il pouvoir se placer pour être dans l'ordre croissant.
     position = check_pos_in_A(head_A, copyB, ft_lstsize(*head_A)) + 1;
-    // //printf("--- %d --- \n", position);
+    //printf("--- %d --- \n", position);
 
     // // Ici, on se place au niveau du maillon dans A qui est en 4ème position
-    while (copyA && copyA->index != position)
+    // while (copyA && copyA->index != position)
         copyA = copyA->next;
     pushing_toheadListA(head_A, copyA->index);
     push_a(head_A, head_B);
-    //printf("--- %d --- \n", copyA->data);
+    // printf("--- %d --- \n", (*head_A)->data);
 }
 
 void 	sorting_above_six(t_list **head_A, t_list **head_B)
@@ -399,17 +404,18 @@ void 	sorting_above_six(t_list **head_A, t_list **head_B)
     t_list *moving;
     t_list *current;
     t_list  *bais;
-    int size;
+    int sizeB;
+    int sizeA;
     int i;
     int j;
 
     bais = *head_B;
     i = 0;
     j = 0;
-    size = ft_lstsize(*head_A);
+    sizeA = ft_lstsize(*head_A);
     circularing_LL(head_A);
     copy = *head_A;
-    while(i < size)
+    while(i < sizeA)
     {
         moving = copy;
         current = copy->next;
@@ -425,11 +431,30 @@ void 	sorting_above_six(t_list **head_A, t_list **head_B)
         copy = copy->next;
         i++;
     }
-    node_to_sendtoB(head_A, head_B, size);
+    node_to_sendtoB(head_A, head_B, sizeA);
     get_cost_to_positionNodeB_inA(head_A, head_B);
-    // while (head_B)
+    
+    sizeB = ft_lstsize(*head_B);
+    // while (*head_B)
     // {
     pushing_to_A(head_A, head_B);
+    // *head_B = (*head_B)->next;
+    pushing_to_A(head_A, head_B);
+    // *head_B = (*head_B)->next;
+    pushing_to_A(head_A, head_B);
+    // pushing_to_A(head_A, head_B);
+    //pushing_to_A(head_A, head_B);
+    //     //*head_B = (*head_B)->next;
+    // }
+        //printf("DATA = %d\n", (*head_B)->next->data);
+        // printf("DATA = %d\n", (*head_B)->data);
+        //pushing_to_A(head_A, head_B);
+        // printf("DATA = %d\n", (*head_B)->data);
+        // printf("DATA = %d\n", (*head_A)->data);
+        // printf("size de A ----- >%d\n", ft_lstsize(*head_A));
+        // printf("size de B ----- >%d\n", ft_lstsize(*head_B));
+        // pushing_to_A(head_A, head_B);
+        // pushing_to_A(head_A, head_B);
     //     *head_B = (*head_B)->next;
     // }
     //printf("%d --\n", min_moves(head_B, ft_lstsize(*head_B)));

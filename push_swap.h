@@ -12,11 +12,13 @@ void	partitionning();
 // Définition d'un maillon de la liste Doublement Chainée
 typedef struct s_list
 {
-	int			    data;
+	int	   		    data;
 	int				sort;
 	char			boolean;
 	int				pos;
 	int				moves;
+	int				index;
+	int				total_moves;
 	struct s_list	*previous;
 	struct s_list	*next;
 }					t_list;
@@ -56,5 +58,9 @@ void 	node_to_sendtoB(t_list **A, t_list **head_B, int size);
 int 	max_sort(t_list   **head_A, int size);
 void 	cost_calculation_pushtoB(t_list **head_A, t_list **head_B, int size);
 void 	cost_calculation_toheadList(t_list **head_B);
-
+int 	check_pos_in_A(t_list **A, t_list *oneNode, int size);
+void 	get_index(t_list **head);
+int 	min_moves_toHead(t_list   **head, int size);
+// void get_total_moves(t_list **head)
+void 	get_cost_to_positionNodeB_inA(t_list **headA, t_list **headB);
 #endif

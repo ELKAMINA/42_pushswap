@@ -40,7 +40,6 @@ int update_pos(t_list **head, t_list *oneNode, int size)
     temp = *head;
     i = 1;
     pos = 1;
-    //size = ft_lstsize(*head);
     while (temp->data != oneNode->data & i <= size)
     {
         pos++;
@@ -81,7 +80,6 @@ void cost_calculation_pushtoB(t_list **head_A, t_list **head_B, int size)
         if (copy->boolean == 'F')
         {
             copy->pos = update_pos(head_A, copy, size);
-            //printf("(%d)", pos);
             if (copy->pos == 1)
                 push_b(head_B, head_A);
             else if (copy->pos == 2)
@@ -108,8 +106,6 @@ void cost_calculation_pushtoB(t_list **head_A, t_list **head_B, int size)
                 }
                 push_b(head_B, head_A);
             }
-            // printf("COPY if boolean == (%d)\n", copy->data);
-            // printf("HEAD A if boolean == (%d)\n", (*head_A)->data);  
             copy = *head_A;
             size--;
         }
@@ -131,13 +127,9 @@ void cost_calculation_toheadList(t_list **head)
     i = 0;
     j = 0;
     size = ft_lstsize(*head);
-    //printf("%d\n", size);
+    get_index(head);
     while (j < size)
     {
-        //printf("J = %d\n", j);
-        //copy->pos = update_pos(head, copy, size);
-        get_index(head);
-        //printf(" @@ %d @@@ %d ---\n", copy->index, copy->data);
         if (copy->index == 1)
             copy->moves = 0;
         else if (copy->index == 2)
@@ -153,10 +145,8 @@ void cost_calculation_toheadList(t_list **head)
         else
         {
             i = copy->index;
-            //printf("COPY INDEX : @@ %d\n", i);
             while (i <= size)
             {
-                // printf("COPY INDEX : @@ %d @@@ %d\n", copy->index, i);
                 copy->moves += 1;
                 i++;
             }
@@ -199,24 +189,24 @@ int max_sort(t_list   **head, int size)
     return (max);
 }
 
-// int min_moves_toHead(t_list   **head, int size)
-// {
-//     int max;
-//     int max_int;
-//     int i;
+int min_moves(t_list   **head, int size)
+{
+    int max;
+    int max_int;
+    int i;
     
-//     i = 0;
-//     max_int = 2147483647;
-//     min = max_int
-//     while (i < size)
-//     {
-//         if  (min > (*head)->moves)
-//             min = (*head)->moves;
-//         *head = (*head)->next;
-//         i++; 
-//     }
-//     return (max);
-// }
+    i = 0;
+    max_int = 2147483647;
+    min = max_int
+    while (i < size)
+    {
+        if  (min > (*head)->total_moves)
+            min = (*head)->total_moves;
+        *head = (*head)->next;
+        i++; 
+    }
+    return (max);
+}
 
 void node_to_sendtoB(t_list **A, t_list **B, int size)
 {
@@ -244,40 +234,7 @@ void node_to_sendtoB(t_list **A, t_list **B, int size)
         current = current->next;
     }
     cost_calculation_pushtoB(A, B, size);
-    // i = 0;
-    // while(i < size)
-    // {
-    //     printf("[%d] --- {%c}\n", test->data, test->boolean);
-    //     test = test->next;
-    //     i++;
-    // }
-
 }
-
-
-// void get_total_movestoA_perNode(t_list **headA, t_list **headB)
-// {
-//     t_list  *copyA;
-//     t_list  *copyB;
-
-//     copyA = *headA;
-//     copyB = *headB;
-//     while(copy)
-//     {
-
-//         check_pos_in_A
-//     }
-// }
-// void get_total_moves(t_list **head)
-// {
-//     t_list  *copy;
-//     int i;
-
-//     while(copy)
-//     {
-//         copy->total_moves = (copy->moves) + 
-//     }
-// }
 
 int check_pos_in_A(t_list **A, t_list *oneNode, int size)
 {
@@ -326,10 +283,21 @@ void get_cost_to_positionNodeB_inA(t_list **headA, t_list **headB)
             copyA = copyA->next;
         //printf(": [%d]\n", copyA->data);
         copyB->total_moves = copyA->moves + copyB->moves + 1;
-        printf("Total moves : [%d] **** %d\n", copyB->total_moves, copyB->data);
+        //printf("Total moves : [%d] **** %d\n", copyB->total_moves, copyB->data);
         copyB = copyB->next;
     }
 }
+
+// void pushing_to_A(t_list **head_A, t_list **head_B)
+// {
+//     t_list *copyA;
+//     t_list *copyB;
+
+//     copyA = *A;
+//     copyB = *B;
+
+    
+// }
 
 void 	sorting_above_six(t_list **head_A, t_list **head_B)
 {

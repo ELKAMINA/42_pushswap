@@ -315,6 +315,7 @@ void get_cost_to_positionNodeB_inA(t_list **headA, t_list **headB)
     copyB = *headB;
     //printf("%d", ft_lstsize(copyB));
     cost_calculation_toheadList(headB);
+    cost_calculation_toheadList(headA);
     get_index(headA);
     while(copyB != NULL)
     {

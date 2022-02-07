@@ -134,9 +134,10 @@ void cost_calculation_toheadList(t_list **head)
     //printf("%d\n", size);
     while (j < size)
     {
+        //printf("J = %d\n", j);
         //copy->pos = update_pos(head, copy, size);
         get_index(head);
-        printf(" @@ %d @@@ %d ---\n", copy->index, copy->data);
+        //printf(" @@ %d @@@ %d ---\n", copy->index, copy->data);
         if (copy->index == 1)
             copy->moves = 0;
         else if (copy->index == 2)
@@ -313,18 +314,18 @@ void get_cost_to_positionNodeB_inA(t_list **headA, t_list **headB)
     copyA = *headA;
     copyB = *headB;
     //printf("%d", ft_lstsize(copyB));
-    while(copyB)
+    cost_calculation_toheadList(headB);
+    get_index(headA);
+    while(copyB != NULL)
     {
         position_inA = check_pos_in_A(headA, copyB, ft_lstsize(*headB)) + 1;
         //printf("Position : [%d] **** %d\n", position_inA, copyB->data);
         //cost_calculation_toheadList(headA);
-        cost_calculation_toheadList(headB);
-        get_index(headA);
         while (position_inA != copyA->index)
             copyA = copyA->next;
         //printf(": [%d]\n", copyA->data);
         copyB->total_moves = copyA->moves + copyB->moves + 1;
-        //printf("Total moves : [%d] **** %d\n", copyB->moves, copyB->data);
+        printf("Total moves : [%d] **** %d\n", copyB->total_moves, copyB->data);
         copyB = copyB->next;
     }
 }

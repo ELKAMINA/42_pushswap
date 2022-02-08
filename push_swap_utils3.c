@@ -96,7 +96,6 @@ void sorting_four(t_list **head_A, t_list **head_B)
 //void sorting_four(t_list **head_A, t_list **head_B)
 {
 t_list *a;
-t_list *b;
 t_list *less;
 int lst_size;
 int index_lower;
@@ -104,7 +103,6 @@ int smallest;
 
 less = (*head_A);
 a = (*head_A);
-b = (*head_B);
 lst_size = ft_lstsize(a);
 index_lower = 1;
 smallest = lower(&a);
@@ -148,13 +146,11 @@ void check_pos_and_push(t_list **head_A, t_list **head_B, int lst_size)
 {
 t_list *a;
 t_list *less;
-t_list *b;
 int index_lower;
 int smallest;
 
 less = (*head_A);
 a = (*head_A);
-b = (*head_B);
 index_lower = 1;
 smallest = lower(&a);
 //printf("%d", smallest);
@@ -196,10 +192,8 @@ void sorting_five(t_list **head_A, t_list **head_B)
 {
     int size;
     t_list *a;
-    t_list *b;
 
     a = (*head_A);
-    b = (*head_B);
     size = ft_lstsize(a);
     check_pos_and_push(head_A, head_B, size);
     sorting_four(head_A, head_B);

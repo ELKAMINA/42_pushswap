@@ -41,7 +41,7 @@ int update_pos(t_list **head, t_list *oneNode, int size)
     temp = *head;
     i = 1;
     pos = 1;
-    while (temp->data != oneNode->data & i <= size)
+    while ((temp->data != oneNode->data) & (i <= size))
     {
         pos++;
         temp = temp->next;
@@ -66,7 +66,6 @@ int middle (int size)
 void cost_calculation_pushtoB(t_list **head_A, t_list **head_B, int size)
 {
     t_list  *copy;
-    t_list  *test;
     int i;
     int j;
     int real_size;
@@ -74,7 +73,6 @@ void cost_calculation_pushtoB(t_list **head_A, t_list **head_B, int size)
     i = 0;
     j = 1;
     copy = *head_A;
-    test = *head_B;
     real_size = size;
     while (j < real_size)
     {
@@ -207,7 +205,7 @@ void pushing_toheadListA(t_list **headA, int index)
     if (copy->index == 1)
         return ;
     else if (copy->index == 2)
-        swap_a(headA);
+        rotate_a(headA);
     else if (copy->index < middle(size))
     {
         while (i < copy->index)
@@ -346,13 +344,9 @@ void get_cost_to_positionNodeB_inA(t_list **headA, t_list **headB)
 {
     t_list  *copyA;
     t_list  *copyB;
-    int i;
-    int sizeA;
     int position_inA;
 
     position_inA = 0;
-    i = 0;
-    sizeA = ft_lstsize(*headA);
     copyA = *headA;
     copyB = *headB;
     cost_calculation_toheadList(headB);
@@ -362,13 +356,14 @@ void get_cost_to_positionNodeB_inA(t_list **headA, t_list **headB)
     while(copyB != NULL)
     {
         position_inA = check_pos_in_A(headA, copyB, ft_lstsize(*headA)) + 1;
-        //printf("Position : [%d] **** %d\n", position_inA, copyB->data);
+        printf("Position : [%d] **** %d\n", position_inA, copyB->data);
         //cost_calculation_toheadList(headA);
+        get_index(headA);
         while (position_inA != copyA->index)
             copyA = copyA->next;
         //printf(": [%d]\n", copyA->data);
         copyB->total_moves = copyA->moves + copyB->moves + 1;
-        //printf("Total moves : [%d] **** %d\n", copyB->total_moves, copyB->data);
+        printf("Total moves : [%d] **** %d\n", copyB->total_moves, copyB->data);
         copyB = copyB->next;
     }
 }
@@ -379,7 +374,6 @@ void pushing_to_A(t_list **head_A, t_list **head_B)
     t_list *copyB;
     t_list *sec_copyB;
     int     position;
-    int i;
 
     copyA = *head_A;
     copyB = *head_B;    
@@ -394,7 +388,6 @@ void pushing_to_A(t_list **head_A, t_list **head_B)
     //printf("cost to head A DATA SECOND TOUR-->%d\n", copyA->moves);
     // printf("%d ---- cost to head B DATA SECOND TOUR-->%d\n", copyB->data, copyB->moves);
     // printf("Total moves : [%d] **** %d\n", copyB->next->moves, copyB->next->data);
-    i = 0;
     // on veut se placer au niveau du maillon dont le nombre total de mouvement est inférieur.
     //printf("MIN MVOES --> %d\n", min_moves((head_B), ft_lstsize(*head_B)));
     //min_moves((head_B), ft_lstsize(*head_B));
@@ -406,16 +399,16 @@ void pushing_to_A(t_list **head_A, t_list **head_B)
     pushing_toheadListB(head_B, copyB->index);
     // // Ici, on checke à quel niveau dans A, il pouvoir se placer pour être dans l'ordre croissant.
     position = check_pos_in_A(head_A, copyB, ft_lstsize(*head_A)) + 1;
-    //printf("--- %d --- \n", position);
+    printf("--- POSITION %d --- \n", position);
 
     // // Ici, on se place au niveau du maillon dans A qui est en 4ème position
     // get_index(head_A);
     while (copyA->index != position)
     {
-        //printf("DATA = %d ---> INDEX=%d\n", copyA->data, copyA->index);
         copyA = copyA->next;
 
     }
+    //printf("DATA = %d ---> INDEX=%d\n", copyA->data, copyA->index);
     pushing_toheadListA(head_A, copyA->index);
     // while (copyA)
 	// {
@@ -438,14 +431,10 @@ void 	sorting_above_six(t_list **head_A, t_list **head_B)
     t_list *copy;
     t_list *moving;
     t_list *current;
-    t_list  *bais;
     int sizeA;
     int i;
-    int j;
 
-    bais = *head_B;
     i = 0;
-    j = 0;
     sizeA = ft_lstsize(*head_A);
     circularing_LL(head_A);
     copy = *head_A;
@@ -470,8 +459,8 @@ void 	sorting_above_six(t_list **head_A, t_list **head_B)
     // while (*head_B != NULL)
     //circularing_LL(head_A);
     pushing_to_A(head_A, head_B);
-   // pushing_to_A(head_A, head_B);
-    //pushing_to_A(head_A, head_B);
+    pushing_to_A(head_A, head_B);
+    pushing_to_A(head_A, head_B);
     //pushing_to_A(head_A, head_B);
     // pushing_to_A(head_A, head_B);
     // pushing_to_A(head_A, head_B);

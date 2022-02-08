@@ -310,24 +310,35 @@ void node_to_sendtoB(t_list **A, t_list **B, int size)
     cost_calculation_pushtoB(A, B, size);
 }
 
-int check_pos_in_A(t_list **A, t_list *oneNode, int size)
+int check_pos_in_A(t_list **A, t_list *oneNode, int sizeA)
 {
     t_list *copy;
+    t_list *head_exception;
     int i;
     int j;
 
     copy = *A;
+    head_exception = *A;
     i = 1;
     j = 1;
     //printf("SIZE = %d\n", size);
-    while (j < size)
+    while (j < sizeA)
     {
-          if (copy->data < oneNode->data && copy->next->data > oneNode->data)
+        if (copy->data < oneNode->data && copy->next->data > oneNode->data)
+        {
+            //printf("node : 5/2/3 : %d --> i = 4/4/2 :  %d\n", oneNode->data, i);
             return (i);
+        }
+        if (copy->next == NULL)
+        {
+            if (copy->data < oneNode->data && head_exception->data > oneNode->data)
+                return (i);
+        }
         copy = copy->next;
         i++;
         j++;
     }
+    //printf(" A : %d \n", head_exception->data);
     return (0);
 }
 
@@ -336,21 +347,21 @@ void get_cost_to_positionNodeB_inA(t_list **headA, t_list **headB)
     t_list  *copyA;
     t_list  *copyB;
     int i;
-    int size;
+    int sizeA;
     int position_inA;
 
     position_inA = 0;
     i = 0;
-    size = ft_lstsize(*headB);
+    sizeA = ft_lstsize(*headA);
     copyA = *headA;
     copyB = *headB;
-    //printf("%d", ft_lstsize(copyB));
     cost_calculation_toheadList(headB);
     cost_calculation_toheadList(headA);
     get_index(headA);
+    //printf("%d", ft_lstsize(copyB));
     while(copyB != NULL)
     {
-        position_inA = check_pos_in_A(headA, copyB, ft_lstsize(*headB)) + 1;
+        position_inA = check_pos_in_A(headA, copyB, ft_lstsize(*headA)) + 1;
         //printf("Position : [%d] **** %d\n", position_inA, copyB->data);
         //cost_calculation_toheadList(headA);
         while (position_inA != copyA->index)
@@ -370,11 +381,11 @@ void pushing_to_A(t_list **head_A, t_list **head_B)
     int     position;
     int i;
 
-    cost_calculation_toheadList(head_B);
-    get_cost_to_positionNodeB_inA(head_A, head_B);
     copyA = *head_A;
     copyB = *head_B;    
     sec_copyB = *head_B;    
+    cost_calculation_toheadList(head_B);
+    get_cost_to_positionNodeB_inA(head_A, head_B);
     // printf("COPY B DATA SECOND TOUR-->%d\n", copyB->data);
     // printf("COPY A DATA SECOND TOUR-->%d\n", copyA->data);
     cost_calculation_toheadList(head_A);
@@ -401,7 +412,7 @@ void pushing_to_A(t_list **head_A, t_list **head_B)
     // get_index(head_A);
     while (copyA->index != position)
     {
-        printf("DATA = %d ---> INDEX=%d\n", copyA->data, copyA->index);
+        //printf("DATA = %d ---> INDEX=%d\n", copyA->data, copyA->index);
         copyA = copyA->next;
 
     }
@@ -428,7 +439,6 @@ void 	sorting_above_six(t_list **head_A, t_list **head_B)
     t_list *moving;
     t_list *current;
     t_list  *bais;
-    int sizeB;
     int sizeA;
     int i;
     int j;
@@ -456,11 +466,12 @@ void 	sorting_above_six(t_list **head_A, t_list **head_B)
         i++;
     }
     node_to_sendtoB(head_A, head_B, sizeA);
-    get_cost_to_positionNodeB_inA(head_A, head_B);
-    
-    sizeB = ft_lstsize(*head_B);
+    //get_cost_to_positionNodeB_inA(head_A, head_B);
     // while (*head_B != NULL)
+    //circularing_LL(head_A);
     pushing_to_A(head_A, head_B);
+   // pushing_to_A(head_A, head_B);
+    //pushing_to_A(head_A, head_B);
     //pushing_to_A(head_A, head_B);
     // pushing_to_A(head_A, head_B);
     // pushing_to_A(head_A, head_B);

@@ -456,11 +456,8 @@ void 	sorting_above_six(t_list **head_A, t_list **head_B)
     }
     node_to_sendtoB(head_A, head_B, sizeA);
     //get_cost_to_positionNodeB_inA(head_A, head_B);
-    // while (*head_B != NULL)
-    //circularing_LL(head_A);
-    pushing_to_A(head_A, head_B);
-    pushing_to_A(head_A, head_B);
-    pushing_to_A(head_A, head_B);
+    while (*head_B != NULL)
+        pushing_to_A(head_A, head_B);
     //pushing_to_A(head_A, head_B);
     // pushing_to_A(head_A, head_B);
     // pushing_to_A(head_A, head_B);

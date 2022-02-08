@@ -70,21 +70,28 @@ void cost_calculation_pushtoB(t_list **head_A, t_list **head_B, int size)
     int j;
     int real_size;
 
-    i = 0;
+    i = 1;
     j = 1;
     copy = *head_A;
     real_size = size;
     while (j < real_size)
     {
+        printf("copy->data : %d ------ copy-> boolean = %c\n", copy->data, copy->boolean);
         if (copy->boolean == 'F')
         {
             copy->pos = update_pos(head_A, copy, size);
             if (copy->pos == 1)
+            {
                 push_b(head_B, head_A);
+                real_size--;
+                j = 1;
+            }
             else if (copy->pos == 2)
             {
                 swap_a(head_A);
                 push_b(head_B, head_A);
+                real_size--;
+                j = 1;
             }
             else if (copy->pos <= middle(size))
             {
@@ -94,6 +101,8 @@ void cost_calculation_pushtoB(t_list **head_A, t_list **head_B, int size)
                     i++;
                 }
                 push_b(head_B, head_A);
+                real_size--;
+                j = 1;
             }
             else
             {
@@ -104,15 +113,16 @@ void cost_calculation_pushtoB(t_list **head_A, t_list **head_B, int size)
                     i++;
                 }
                 push_b(head_B, head_A);
+                real_size--;
+                j = 1;
             }
             copy = *head_A;
-            size--;
         }
         else
             copy = copy->next;
         j++;
     }
-    copy->next = NULL;
+  //  copy->next = NULL;
 }
 
 void cost_calculation_toheadList(t_list **head)
@@ -217,7 +227,7 @@ void pushing_toheadListA(t_list **headA, int index, int size)
     else
     {
         i = copy->index;
-        printf("i = %d ---- Index %d\n",i, copy->index);
+        //printf("i = %d ---- Index %d\n",i, copy->index);
         while (i <= size)
         {
             rev_rotate_a(headA);
@@ -307,6 +317,7 @@ void node_to_sendtoB(t_list **A, t_list **B, int size)
         }
         current = current->next;
     }
+    copy->previous->next = NULL;
     cost_calculation_pushtoB(A, B, size);
 }
 
@@ -354,19 +365,31 @@ void get_cost_to_positionNodeB_inA(t_list **headA, t_list **headB)
     cost_calculation_toheadList(headB);
     cost_calculation_toheadList(headA);
     get_index(headA);
-    //printf("%d", ft_lstsize(copyB));
+    // write(1, "A\n", 2);
+    // while (copyA)
+    // {
+    //     printf("[%d]--->[%d]--->[%d] \n", copyA->data, copyA->moves, copyA->index);
+    //     copyA = copyA->next;
+    // }
+    // write(1, "B\n", 2);
+    // while (copyB)
+    // {
+    //     printf("[%d]--->[%d]--->[%d] \n", copyB->data, copyB->moves, copyB->index);
+    //     copyB = copyB->next;
+    // }
     while(copyB != NULL)
     {
         position_inA = check_pos_in_A(headA, copyB, ft_lstsize(*headA)) + 1;
-        //printf("Position : [%d] **** %d\n", position_inA, copyB->data);
+        printf("Position : [%d] **** %d\n", position_inA, copyB->data);
         //cost_calculation_toheadList(headA);
         get_index(headA);
         while (position_inA != copyA->index)
             copyA = copyA->next;
         //printf(": [%d]\n", copyA->data);
         copyB->total_moves = copyA->moves + copyB->moves + 1;
-        //printf("Total moves : [%d] **** %d\n", copyB->total_moves, copyB->data);
+        printf("Total moves : [%d] **** %d\n", copyB->total_moves, copyB->data);
         copyB = copyB->next;
+        copyA = *headA;
     }
 }
 
@@ -473,11 +496,11 @@ void 	sorting_above_six(t_list **head_A, t_list **head_B)
         i++;
     }
     node_to_sendtoB(head_A, head_B, sizeA);
-    //get_cost_to_positionNodeB_inA(head_A, head_B);
-    while (*head_B != NULL)
-        pushing_to_A(head_A, head_B);
-    //printf("%d\n", ft_lstsize(*head_A));
-    last_sort(head_A);
+    get_cost_to_positionNodeB_inA(head_A, head_B);
+    // while (*head_B != NULL)
+    //     pushing_to_A(head_A, head_B);
+    // printf("%d\n", ft_lstsize(*head_A));
+    // last_sort(head_A);
     //pushing_to_A(head_A, head_B);
     // pushing_to_A(head_A, head_B);
     // pushing_to_A(head_A, head_B);

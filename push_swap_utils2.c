@@ -100,16 +100,19 @@ void rev_rotate_a(t_list **a)
     newNode = *a;
     if (!*a || !(*a)->next)
         return ;
-    while (newNode -> next -> next)
+    while (newNode -> next ->next)
         newNode = newNode -> next;
-    // newNode -> next -> next = *a;
-    // newNode -> previous -> previous = newNode -> next;
+    newNode ->next -> next = *a;
+    (*a)->previous = newNode->next->next;
+    (*a) = newNode -> next;
+    newNode -> next = NULL;
+    (*a)->previous = NULL; 
     // *a = newNode -> next;
     // newNode -> next = NULL;
-    newNode->next->next = *a;
-    newNode->previous->previous = newNode->next;
-    *a = newNode->previous->previous;
-    newNode->next = NULL;
+    // newNode->next->next = *a;
+    // (*a)->previous = newNode->next;
+    // //*a = newNode->previous->previous;
+    // newNode->next = NULL;
     write (1, "rra\n", 4);
 }
 
@@ -120,11 +123,12 @@ void rev_rotate_b(t_list **b)
     newNode = *b;
     if (!*b || !(*b)->next)
         return ;
-    while (newNode -> next -> next)
+    while (newNode -> next ->next)
         newNode = newNode -> next;
-    newNode -> next -> next = *b;
-    newNode -> previous -> previous = newNode -> next;
-    *b = newNode -> next;
+    newNode ->next -> next = *b;
+    (*b)->previous = newNode->next->next;
+    (*b) = newNode -> next;
     newNode -> next = NULL;
+    (*b)->previous = NULL; 
     write (1, "rrb\n", 4);
 }

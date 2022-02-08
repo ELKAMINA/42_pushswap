@@ -190,18 +190,18 @@ void pushing_toheadListB(t_list **headB, int index)
     }
 }
 
-void pushing_toheadListA(t_list **headA, int index)
+void pushing_toheadListA(t_list **headA, int index, int size)
 {
     t_list *copy;
-    int size;
     int i;
 
     i = 0;
     copy = *headA;
-    size = ft_lstsize(*headA);
+   //printf("SIZE = %d\n", size);
     get_index(headA);
     while (copy->index != index)
         copy = copy->next;
+    
     if (copy->index == 1)
         return ;
     else if (copy->index == 2)
@@ -217,10 +217,12 @@ void pushing_toheadListA(t_list **headA, int index)
     else
     {
         i = copy->index;
+        printf("i = %d ---- Index %d\n",i, copy->index);
         while (i <= size)
         {
             rev_rotate_a(headA);
             i++;
+            //printf("%d %d\n", i, );
         }
     }
 }
@@ -356,14 +358,14 @@ void get_cost_to_positionNodeB_inA(t_list **headA, t_list **headB)
     while(copyB != NULL)
     {
         position_inA = check_pos_in_A(headA, copyB, ft_lstsize(*headA)) + 1;
-        printf("Position : [%d] **** %d\n", position_inA, copyB->data);
+        //printf("Position : [%d] **** %d\n", position_inA, copyB->data);
         //cost_calculation_toheadList(headA);
         get_index(headA);
         while (position_inA != copyA->index)
             copyA = copyA->next;
         //printf(": [%d]\n", copyA->data);
         copyB->total_moves = copyA->moves + copyB->moves + 1;
-        printf("Total moves : [%d] **** %d\n", copyB->total_moves, copyB->data);
+        //printf("Total moves : [%d] **** %d\n", copyB->total_moves, copyB->data);
         copyB = copyB->next;
     }
 }
@@ -399,7 +401,7 @@ void pushing_to_A(t_list **head_A, t_list **head_B)
     pushing_toheadListB(head_B, copyB->index);
     // // Ici, on checke à quel niveau dans A, il pouvoir se placer pour être dans l'ordre croissant.
     position = check_pos_in_A(head_A, copyB, ft_lstsize(*head_A)) + 1;
-    printf("--- POSITION %d --- \n", position);
+    //printf("--- POSITION %d --- \n", position);
 
     // // Ici, on se place au niveau du maillon dans A qui est en 4ème position
     // get_index(head_A);
@@ -409,7 +411,7 @@ void pushing_to_A(t_list **head_A, t_list **head_B)
 
     }
     //printf("DATA = %d ---> INDEX=%d\n", copyA->data, copyA->index);
-    pushing_toheadListA(head_A, copyA->index);
+    pushing_toheadListA(head_A, copyA->index, ft_lstsize(*head_A));
     // while (copyA)
 	// {
 	// 	printf("A = [%d]\n", copyA->data);
@@ -424,6 +426,22 @@ void pushing_to_A(t_list **head_A, t_list **head_B)
     // printf("testC = %p\n", (&*head_A));
     // printf("testD = %p\n", (&*head_B));
     // printf("--- %d --- \n", (*head_A)->data);
+}
+
+void last_sort (t_list **headA)
+{
+    t_list *copy;
+    t_list *copy2;
+    int min;
+
+    get_index(headA);
+    copy = *headA;
+    copy2 = *headA;
+    min = lower(&copy2);
+    //printf("%d\n", ft_lstsize(*headA));
+    while (copy->data != min)
+        copy = copy->next;
+    pushing_toheadListA(headA, copy->index, ft_lstsize(*headA));
 }
 
 void 	sorting_above_six(t_list **head_A, t_list **head_B)
@@ -458,6 +476,8 @@ void 	sorting_above_six(t_list **head_A, t_list **head_B)
     //get_cost_to_positionNodeB_inA(head_A, head_B);
     while (*head_B != NULL)
         pushing_to_A(head_A, head_B);
+    //printf("%d\n", ft_lstsize(*head_A));
+    last_sort(head_A);
     //pushing_to_A(head_A, head_B);
     // pushing_to_A(head_A, head_B);
     // pushing_to_A(head_A, head_B);

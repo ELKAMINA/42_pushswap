@@ -61,10 +61,10 @@ void 	cost_calculation_toheadList(t_list **head_B);
 int 	check_pos_in_A(t_list **A, t_list *oneNode, int size);
 void 	get_index(t_list **head);
 int 	min_moves_toHead(t_list   **head, int size);
-// void get_total_moves(t_list **head)
 int 	min_moves(t_list   **head, int size);
 void 	pushing_to_A(t_list **A, t_list **B);
 void 	get_cost_to_positionNodeB_inA(t_list **headA, t_list **headB);
 void 	pushing_toheadListB(t_list **headB, int index);
-void 	pushing_toheadListA(t_list **headA, int index);
+void 	pushing_toheadListA(t_list **headA, int index, int size);
+void 	last_sort (t_list **headA);
 #endif

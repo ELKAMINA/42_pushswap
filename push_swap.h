@@ -67,4 +67,5 @@ void 	get_cost_to_positionNodeB_inA(t_list **headA, t_list **headB);
 void 	pushing_toheadListB(t_list **headB, int index);
 void 	pushing_toheadListA(t_list **headA, int index, int size);
 void 	last_sort (t_list **headA);
+void 	decircularing(t_list **A, int size);
 #endif

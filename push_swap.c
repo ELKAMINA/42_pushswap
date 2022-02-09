@@ -81,9 +81,11 @@ void	print_lst(t_list  *start)
 	t_list *temp;
 
 	temp = start;
+
 	while (temp)
 	{
-		printf("DATA = [%d]\n", temp->data);
+
+		printf("DATA = [%d] \n", temp->data);
 		temp = temp->next;
 	}
 }
@@ -134,10 +136,10 @@ int main (int   argc, char  *argv[])
 			// sorting_three(&head_A);
 			// push_a(&head_A, &head_B);
 		}
-		// write(1, "A\n", 2);
-		// print_lst(head_A);
-		// write(1, "B\n", 2);
-		// print_lst(head_B);
+		write(1, "A\n", 2);
+		print_lst(head_A);
+		write(1, "B\n", 2);
+		print_lst(head_B);
 		// printf("%d", higher(&head_A));
 		// printf("%d", lower(&head_A));
 	}

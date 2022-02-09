@@ -63,35 +63,45 @@ int middle (int size)
     return (mid);
 }
 
-void cost_calculation_pushtoB(t_list **head_A, t_list **head_B, int size)
+void decircularing(t_list **A, int size)
 {
+ printf("test\n");
+  t_list *copy;
+  int i;
+
+  i = 0;
+  copy = *A;
+  copy->previous = NULL;
+  //printf("%d ===\n", copy->data);
+  while (i < size - 1)
+  {
+      copy = copy->next;
+      i++;
+  }
+  copy->next = NULL;
+}
+
+void  cost_calculation_pushtoB(t_list **head_A, t_list **head_B, int size)
+{
+    decircularing(head_A, size);
     t_list  *copy;
     int i;
-    int j;
-    int real_size;
 
     i = 1;
-    j = 1;
     copy = *head_A;
-    real_size = size;
-    while (j < real_size)
+    while (copy)
     {
-        printf("copy->data : %d ------ copy-> boolean = %c\n", copy->data, copy->boolean);
+        //printf("copy->data : %d ------ copy-> boolean = %c\n", copy->data, copy->boolean);
         if (copy->boolean == 'F')
         {
             copy->pos = update_pos(head_A, copy, size);
+            //printf("pos : %d ------ copy-> POS = %d\n", copy->data, copy->pos);
             if (copy->pos == 1)
-            {
                 push_b(head_B, head_A);
-                real_size--;
-                j = 1;
-            }
             else if (copy->pos == 2)
             {
                 swap_a(head_A);
                 push_b(head_B, head_A);
-                real_size--;
-                j = 1;
             }
             else if (copy->pos <= middle(size))
             {
@@ -101,8 +111,6 @@ void cost_calculation_pushtoB(t_list **head_A, t_list **head_B, int size)
                     i++;
                 }
                 push_b(head_B, head_A);
-                real_size--;
-                j = 1;
             }
             else
             {
@@ -113,16 +121,14 @@ void cost_calculation_pushtoB(t_list **head_A, t_list **head_B, int size)
                     i++;
                 }
                 push_b(head_B, head_A);
-                real_size--;
-                j = 1;
             }
             copy = *head_A;
+            // lastfalse = copy;
+            //printf("HEAD A ===>%d\n", (*head_A)->data);
         }
         else
             copy = copy->next;
-        j++;
     }
-  //  copy->next = NULL;
 }
 
 void cost_calculation_toheadList(t_list **head)
@@ -292,16 +298,15 @@ int min_moves(t_list   **head, int size)
     return (min);
 }
 
+// OK fonction envoie liste circulaire A avec ceux qui sont true et false
 void node_to_sendtoB(t_list **A, t_list **B, int size)
 {
     t_list *copy;
-    int sort_max;
+    int     sort_max;
     t_list *moving;
     t_list *current;
-    // t_list  *test;
 
     copy = *A;
-    // test = (*A);
     sort_max = max_sort(A, size);
     while (copy->sort != sort_max)
         copy = copy->next;
@@ -317,7 +322,6 @@ void node_to_sendtoB(t_list **A, t_list **B, int size)
         }
         current = current->next;
     }
-    copy->previous->next = NULL;
     cost_calculation_pushtoB(A, B, size);
 }
 
@@ -476,9 +480,9 @@ void 	sorting_above_six(t_list **head_A, t_list **head_B)
     int i;
 
     i = 0;
+    // printf( "I ====> %d\n", i);
     sizeA = ft_lstsize(*head_A);
     circularing_LL(head_A);
-    copy = *head_A;
     while(i < sizeA)
     {
         moving = copy;
@@ -492,69 +496,13 @@ void 	sorting_above_six(t_list **head_A, t_list **head_B)
             }
             current = current->next;
         }
+        //printf("[%d] ==> [%d]\n", copy->data, copy->sort);
         copy = copy->next;
         i++;
     }
     node_to_sendtoB(head_A, head_B, sizeA);
     get_cost_to_positionNodeB_inA(head_A, head_B);
-    // while (*head_B != NULL)
-    //     pushing_to_A(head_A, head_B);
-    // printf("%d\n", ft_lstsize(*head_A));
-    // last_sort(head_A);
-    //pushing_to_A(head_A, head_B);
-    // pushing_to_A(head_A, head_B);
-    // pushing_to_A(head_A, head_B);
-    // printf("testA = %p\n", (&*head_A));
-    // printf("testB = %p\n", (&*head_B));
-    //pushing_to_A(head_A, head_B);
-    // pushing_to_A(head_A, head_B);
-
-    //      *head_B = (*head_B)->next;
-        
-    // }
-    // pushing_to_A(head_A, head_B);
-    // // *head_B = (*head_B)->next;
-    // pushing_to_A(head_A, head_B);
-    // pushing_to_A(head_A, head_B);
-    //pushing_to_A(head_A, head_B);
-    //     //*head_B = (*head_B)->next;
-    // }
-        //printf("DATA = %d\n", (*head_B)->next->data);
-        //pushing_to_A(head_A, head_B);
-        // printf("DATA = %d\n", (*head_B)->data);
-        // printf("DATA = %d\n", (*head_A)->data);
-        // printf("size de A ----- >%d\n", ft_lstsize(*head_A));
-        // printf("size de B ----- >%d\n", ft_lstsize(*head_B));
-        // pushing_to_A(head_A, head_B);
-        // pushing_to_A(head_A, head_B);
-    //     *head_B = (*head_B)->next;
-    // }
-    //printf("%d --\n", min_moves(head_B, ft_lstsize(*head_B)));
-    // write(1, "A\n", 2);
-    // while (*head_A)
-	// {
-	// 	printf("DATA = [%d]\n", (*head_A)->data);
-	// 	*head_A = (*head_A)->next;
-	// }
-    //cost_calculation_toheadList(head_B);
-    //cost_calculation_toheadList(head_A);
-    // write(1, "B\n", 2);
-    //get_index(head_A);
-    
-    // while(*head_B)
-    // {
-    //     printf("(%d)-- (%d)\n",(*head_B)->data, (*head_B)->total_moves);
-    //     *head_B = (*head_B)->next;
-    // }
-    // printf("(%d)\n", check_pos_in_A(head_A, test, size));
-    // printf("(%d)\n", check_pos_in_A(head_A, test->next->next, size));
-    // i = 0;
-    // while(i < size)
-    // {
-    //     printf("[%d] --- {%d}\n", test->data, test->sort);
-    //     test = test->next;
-    //     i++;
-    // }
+    while (*head_B != NULL)
+        pushing_to_A(head_A, head_B);
+    last_sort(head_A);
 }
-
-

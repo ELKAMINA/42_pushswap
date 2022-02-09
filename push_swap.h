@@ -58,7 +58,7 @@ void 	node_to_sendtoB(t_list **A, t_list **head_B, int size);
 int 	max_sort(t_list   **head_A, int size);
 void 	cost_calculation_pushtoB(t_list **head_A, t_list **head_B, int size);
 void 	cost_calculation_toheadList(t_list **head_B);
-int 	check_pos_in_A(t_list **A, t_list *oneNode, int size);
+int 	check_pos_in_A(t_list **A, t_list *oneNode);
 void 	get_index(t_list **head);
 int 	min_moves_toHead(t_list   **head, int size);
 int 	min_moves(t_list   **head, int size);

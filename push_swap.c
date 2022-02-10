@@ -49,7 +49,6 @@ t_list *create_A(int argc, char *argv[])
 			i++;
 		}
 	}
-	//je recupere et je parse mes arguments et je les affiche
 	return (head_A);
 }
 
@@ -92,15 +91,7 @@ int main (int   argc, char  *argv[])
 	else 
 	{
 		head_A = create_A(argc, argv);
-		head_B = NULL;
-		// printf("{Argc= %d}", argc);
-		// swap_a(&head_A);
-		// swap_b(head_B);
-		//push_a(&head_A, &head_B);
-		//push_b(&head_B, &head_A);
-		///rotate_a(&head_A);
-		//rev_rotate_a(&head_A);
-		//rev_rotate_b(&head_B);		
+		head_B = NULL;	
 		if	(argc == 3)
 			sorting_two(&head_A);	
 		else if	(argc == 4)
@@ -108,25 +99,13 @@ int main (int   argc, char  *argv[])
 		else if	(argc == 5)
 			sorting_four(&head_A, &head_B);
 		else if	(argc == 6)
-		{
 			sorting_five(&head_A, &head_B);
-			// sorting_three(&head_A);
-			// push_a(&head_A, &head_B);
-		}
 		else
-		{
-			// circularing_LL(&head_A);
 			sorting_above_six(&head_A, &head_B);
-			// sorting_under_hundred(&head_A, &head_B);
-			// sorting_three(&head_A);
-			// push_a(&head_A, &head_B);
-		}
 		write(1, "A\n", 2);
 		print_lst(head_A);
 		write(1, "B\n", 2);
 		print_lst(head_B);
-		// printf("%d", higher(&head_A));
-		// printf("%d", lower(&head_A));
 	}
 	return 0 ;
 }

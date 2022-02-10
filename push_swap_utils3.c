@@ -93,7 +93,6 @@ void sorting_three(t_list **head)
 }
 
 void sorting_four(t_list **head_A, t_list **head_B)
-//void sorting_four(t_list **head_A, t_list **head_B)
 {
 t_list *a;
 t_list *less;
@@ -106,13 +105,11 @@ a = (*head_A);
 lst_size = ft_lstsize(a);
 index_lower = 1;
 smallest = lower(&a);
-// printf("(%d)\n", lst_size);
 while(less-> data != smallest)
 {
     index_lower++;
     less = less -> next;
 }
-//printf("(%d)\n", index_lower);
 if (index_lower == lst_size)
 {
    rev_rotate_a(head_A);
@@ -134,11 +131,6 @@ else
     push_b(head_B, head_A);
 }
 sorting_three(head_A);
-// while((*head_A) != NULL)
-// {
-//     printf("(%d)", (*head_A)->data);
-//     *head_A = (*head_A)->next;
-// }
 push_a(head_A, head_B);
 }
 
@@ -153,15 +145,11 @@ less = (*head_A);
 a = (*head_A);
 index_lower = 1;
 smallest = lower(&a);
-//printf("%d", smallest);
-//printf("(%d)\n", lst_size);
-//printf("%d", (*head_B)->data);
 while(less->data != smallest)
 {
     index_lower++;
     less = less->next;
 }
-//printf("(%d)\n", index_lower);
 if (index_lower == lst_size)
 {
    rev_rotate_a(head_A);
@@ -198,6 +186,4 @@ void sorting_five(t_list **head_A, t_list **head_B)
     check_pos_and_push(head_A, head_B, size);
     sorting_four(head_A, head_B);
     push_a(head_A, head_B);
-    //printf("%d", size);
-    // printf("%d", (*head_B)->data);
 }

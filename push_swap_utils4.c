@@ -217,7 +217,7 @@ void pushing_toheadListA(t_list **headA, int index, int size)
         rotate_a(headA);
     else if (copy->index < middle(size))
     {
-        while (i < copy->index)
+        while (i < copy->index - 1)
         {
             rotate_a(headA);
             i++;
@@ -402,7 +402,7 @@ void pushing_to_A(t_list **head_A, t_list **head_B)
     // // Ici, on envoie l'élement concerné à la tête de la liste
     pushing_toheadListB(head_B, copyB->index);
     // // // Ici, on checke à quel niveau dans A, il pouvoir se placer pour être dans l'ordre croissant.
-    copyB ->posinA = check_pos_in_A(head_A, copyB) + 1;
+    copyB->posinA = check_pos_in_A(head_A, copyB) + 1;
     //printf("%d\n", copyB->posinA);
     // //printf("--- POSITION %d --- \n", position);
 

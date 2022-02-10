@@ -15,6 +15,7 @@ typedef struct s_list
 	int	   		    data;
 	int				sort;
 	char			boolean;
+	int				posinA;
 	int				pos;
 	int				moves;
 	int				index;
@@ -61,7 +62,7 @@ void 	cost_calculation_toheadList(t_list **head_B);
 int 	check_pos_in_A(t_list **A, t_list *oneNode);
 void 	get_index(t_list **head);
 int 	min_moves_toHead(t_list   **head, int size);
-int 	min_moves(t_list   **head, int size);
+int 	min_moves(t_list   **head);
 void 	pushing_to_A(t_list **A, t_list **B);
 void 	get_cost_to_positionNodeB_inA(t_list **headA, t_list **headB);
 void 	pushing_toheadListB(t_list **headB, int index);

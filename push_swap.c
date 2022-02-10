@@ -1,20 +1,5 @@
 #include "push_swap.h"
 
-// int	check_args(char	*argv[])
-// {
-// 	int	i; 
-
-// 	i = 1;
-// 	while (argv[i])
-// 	{
-		
-// 		if	(*argv[i] < 48 || *argv[i] > 57)
-// 			return (0);
-// 		i ++;
-// 	}
-// 	return (1);
-// }
-
 int check_dup(char *argv[], int n)
 {
 	int	i;

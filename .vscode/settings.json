@@ -1,5 +1,27 @@
 {
     "files.associations": {
-        "chrono": "c"
+        "chrono": "c",
+        "__bit_reference": "c",
+        "__functional_03": "c",
+        "__mutex_base": "c",
+        "__node_handle": "c",
+        "array": "c",
+        "functional": "c",
+        "ios": "c",
+        "istream": "c",
+        "memory": "c",
+        "optional": "c",
+        "ostream": "c",
+        "sstream": "c",
+        "streambuf": "c",
+        "string_view": "c",
+        "thread": "c",
+        "tuple": "c",
+        "vector": "c",
+        "*.tcc": "c",
+        "concepts": "c",
+        "string": "c",
+        "unordered_map": "c",
+        "stop_token": "c"
     }
 }

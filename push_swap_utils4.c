@@ -410,24 +410,8 @@ void pushing_to_A(t_list **head_A, t_list **head_B)
     get_index(head_A);
     while (copyA->index != copyB->posinA)
         copyA = copyA->next;
-    //printf("DATA = %d ---> INDEX=%d\n", copyA->data, copyA->index);
-
-    // }
     pushing_toheadListA(head_A, copyA->index, ft_lstsize(*head_A));
-    // while (copyA)
-	// {
-	// 	printf("A = [%d]\n", copyA->data);
-	// 	copyA = copyA->next;
-	// }
-    // while (copyB)
-	// {
-	// 	printf("B = [%d]\n", copyB->data);
-	// 	copyB = copyB->next;
-	// }
     push_a(head_A, head_B);
-    // printf("testC = %p\n", (&*head_A));
-    // printf("testD = %p\n", (&*head_B));
-    // printf("--- %d --- \n", (*head_A)->data);
 }
 
 void last_sort (t_list **headA)
@@ -477,11 +461,11 @@ void 	sorting_above_six(t_list **head_A, t_list **head_B)
     }
     //printf("test%d\n", head_B->data);
     node_to_sendtoB(head_A, head_B, sizeA);
-    // while (*head_B)
-    //     pushing_to_A(head_A, head_B);
-    pushing_to_A(head_A, head_B);
-    pushing_to_A(head_A, head_B);
-    pushing_to_A(head_A, head_B);
-    //pushing_to_A(head_A, head_B);
+    while (*head_B)
+        pushing_to_A(head_A, head_B);
+    // pushing_to_A(head_A, head_B);
+    // pushing_to_A(head_A, head_B);
+    // pushing_to_A(head_A, head_B);
+    // pushing_to_A(head_A, head_B);
     last_sort(head_A);
 }

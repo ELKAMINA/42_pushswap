@@ -180,7 +180,7 @@ void pushing_toheadListB(t_list **headB, int index)
     if (copy->index == 1)
         return ;
     else if (copy->index == 2)
-        swap_b(*headB);
+        swap_b(headB);
     else if (copy->index < middle(size))
     {
         while (i < copy->index)
@@ -396,9 +396,14 @@ void pushing_to_A(t_list **head_A, t_list **head_B)
     // printf("Hello %d\n", copyB->data);
     // printf("min total moves : %d\n", min_moves(&sec_copyB));
     while(copyB->total_moves != min_moves(&sec_copyB))
+    {
+         printf("\n DANS LA BOUCLE data = %d --- total moves = %d index = %d\n", copyB->data, copyB->total_moves, copyB->index);
         copyB = copyB->next;
+
+    }
+    printf("\n APRES LA BOUCLE data = %d --- total moves = %d -- index = %d \n", copyB->data, copyB->total_moves, copyB->index);
+
     // }
-    //printf("\n HEY--- data = %d --- total moves = %d \n", copyB->data, copyB->total_moves);
     // // Ici, on envoie l'élement concerné à la tête de la liste
     pushing_toheadListB(head_B, copyB->index);
     // // // Ici, on checke à quel niveau dans A, il pouvoir se placer pour être dans l'ordre croissant.
@@ -410,6 +415,7 @@ void pushing_to_A(t_list **head_A, t_list **head_B)
     get_index(head_A);
     while (copyA->index != copyB->posinA)
         copyA = copyA->next;
+    printf("copyIndex --> %d\n", copyA->index);
     pushing_toheadListA(head_A, copyA->index, ft_lstsize(*head_A));
     push_a(head_A, head_B);
 }
@@ -463,9 +469,9 @@ void 	sorting_above_six(t_list **head_A, t_list **head_B)
     node_to_sendtoB(head_A, head_B, sizeA);
     while (*head_B)
         pushing_to_A(head_A, head_B);
+    //  pushing_to_A(head_A, head_B);
     // pushing_to_A(head_A, head_B);
     // pushing_to_A(head_A, head_B);
-    // pushing_to_A(head_A, head_B);
-    // pushing_to_A(head_A, head_B);
-    last_sort(head_A);
+    //pushing_to_A(head_A, head_B);
+   last_sort(head_A);
 }

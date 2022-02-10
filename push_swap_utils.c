@@ -36,7 +36,7 @@ void swap_a(t_list  **start)
     // }
 }
 
-void swap_b(t_list  *start)
+void swap_b(t_list  **start)
 {
     t_list  *n1;
     t_list  *n2;
@@ -44,7 +44,7 @@ void swap_b(t_list  *start)
     t_list  *temp;
 
 
-    n1 =  start;
+    n1 =  *start;
     if  (n1 == NULL)
         return ;
     // Ici comme la fonction recoit double pointeur => https://stackoverflow.com/questions/14766683/pointing-dereference-inside-a-struct-error
@@ -59,8 +59,11 @@ void swap_b(t_list  *start)
     n2 -> next = n1;
     if (n3 != NULL)
         n3 -> previous = n1;
-    start = n2;
+    *start = n2;
     write (1, "sb\n", 3);
+    // start = start->previous;
+    // print_lst(start);
+    // start -> previous = NULL;
     // https://stackoverflow.com/questions/33455329/swap-first-2-nodes-only-in-a-doubly-linked-list
     // while (start != NULL)
     // { 
@@ -72,7 +75,7 @@ void swap_b(t_list  *start)
 void ss(t_list *a, t_list *b)
 {
     swap_a(&a);
-    swap_b(b);
+    swap_b(&b);
     write (1, "ss\n", 3);
 }
 

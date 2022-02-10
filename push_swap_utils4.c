@@ -323,7 +323,6 @@ int check_pos_in_A(t_list **A, t_list *oneNode)
     get_index(A);
     while (copy && copy->next)
     {
-        printf("copy data = %d\n", copy->data);
         if (copy->data < oneNode->data && copy->next->data > oneNode->data)
             return (i);
         else if (copy->data == lowest && oneNode->data < copy->data)
@@ -369,17 +368,12 @@ void pushing_to_A(t_list **head_A, t_list **head_B)
     sec_copyB = *head_B;
     get_cost_to_positionNodeB_inA(head_A, head_B);
     while(copyB->total_moves != min_moves(&sec_copyB))
-    {
-         printf("\n DANS LA BOUCLE data = %d --- total moves = %d index = %d\n", copyB->data, copyB->total_moves, copyB->index);
         copyB = copyB->next;
-
-    }
     pushing_toheadListB(head_B, copyB->index);
     copyB->posinA = check_pos_in_A(head_A, copyB) + 1;
     get_index(head_A);
     while (copyA->index != copyB->posinA)
         copyA = copyA->next;
-    printf("copyIndex --> %d\n", copyA->index);
     pushing_toheadListA(head_A, copyA->index, ft_lstsize(*head_A));
     push_a(head_A, head_B);
 }

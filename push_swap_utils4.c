@@ -143,7 +143,7 @@ void cost_calculation_toheadList(t_list **head)
             copy->moves = 0;
         else if (copy->index == 2)
             copy->moves = 1;
-        else if (copy->index < middle(size))
+        else if (copy->index <= middle(size))
         {
             while (i < copy->index)
             {
@@ -370,12 +370,14 @@ void pushing_to_A(t_list **head_A, t_list **head_B)
     while(copyB->total_moves != min_moves(&sec_copyB))
         copyB = copyB->next;
     pushing_toheadListB(head_B, copyB->index);
+    //printf("test\n");
     copyB->posinA = check_pos_in_A(head_A, copyB) + 1;
     get_index(head_A);
     while (copyA->index != copyB->posinA)
         copyA = copyA->next;
     pushing_toheadListA(head_A, copyA->index, ft_lstsize(*head_A));
     push_a(head_A, head_B);
+    
 }
 
 void last_sort (t_list **headA)
@@ -422,8 +424,7 @@ void 	sorting_above_six(t_list **head_A, t_list **head_B)
         i++;
     }
     node_to_sendtoB(head_A, head_B, sizeA);
-    // while (*head_B)
-    //     pushing_to_A(head_A, head_B);
-    // pushing_to_A(head_A, head_B);
-    // last_sort(head_A);
+    while (*head_B)
+        pushing_to_A(head_A, head_B);
+    last_sort(head_A);
 }

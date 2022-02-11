@@ -102,10 +102,10 @@ int main (int   argc, char  *argv[])
 			sorting_five(&head_A, &head_B);
 		else
 			sorting_above_six(&head_A, &head_B);
+	}
 		write(1, "A\n", 2);
 		print_lst(head_A);
 		write(1, "B\n", 2);
 		print_lst(head_B);
-	}
 	return 0 ;
 }

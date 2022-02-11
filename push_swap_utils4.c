@@ -87,21 +87,21 @@ void  cost_calculation_pushtoB(t_list **head_A, t_list **head_B, int size)
 
     i = 1;
     copy = *head_A;
+    get_index(head_A);
     while (copy)
     {
         if (copy->boolean == 'F')
         {
-            copy->pos = update_pos(head_A, copy, size);
-            if (copy->pos == 1)
+            if (copy->index == 1)
                 push_b(head_B, head_A);
-            else if (copy->pos == 2)
+            else if (copy->index == 2)
             {
                 swap_a(head_A);
                 push_b(head_B, head_A);
             }
-            else if (copy->pos <= middle(size))
+            else if (copy->index <= middle(ft_lstsize(*head_A)))
             {
-                while (i < copy->pos)
+                while (i < copy->index)
                 {
                     rotate_a(head_A);
                     i++;
@@ -110,8 +110,8 @@ void  cost_calculation_pushtoB(t_list **head_A, t_list **head_B, int size)
             }
             else
             {
-                i = copy->pos;
-                while (i <= size)
+                i = copy->index;
+                while (i <= ft_lstsize(*head_A))
                 {
                     rev_rotate_a(head_A);
                     i++;
@@ -119,6 +119,8 @@ void  cost_calculation_pushtoB(t_list **head_A, t_list **head_B, int size)
                 push_b(head_B, head_A);
             }
             copy = *head_A;
+            get_index(head_A);
+            i = 1;
         }
         else
             copy = copy->next;
@@ -268,9 +270,7 @@ int min_moves(t_list   **head)
     int min;
     t_list *copy;
     int max_int;
-    int i;
-    
-    i = 0;
+
     copy = *head;
     max_int = 2147483647;
     min = max_int;
@@ -422,11 +422,8 @@ void 	sorting_above_six(t_list **head_A, t_list **head_B)
         i++;
     }
     node_to_sendtoB(head_A, head_B, sizeA);
-    while (*head_B)
-        pushing_to_A(head_A, head_B);
+    // while (*head_B)
+    //     pushing_to_A(head_A, head_B);
     // pushing_to_A(head_A, head_B);
-    // pushing_to_A(head_A, head_B);
-    // pushing_to_A(head_A, head_B);
-    // pushing_to_A(head_A, head_B);
-    last_sort(head_A);
+    // last_sort(head_A);
 }

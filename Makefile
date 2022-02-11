@@ -1,4 +1,4 @@
-CC = gcc -Wall -Werror -Wextra
+CC = gcc -Wall -Werror -Wextra -g
 
 NAME = push_swap
 

@@ -124,6 +124,7 @@ void  cost_calculation_pushtoB(t_list **head_A, t_list **head_B, int size)
         }
         else
             copy = copy->next;
+        i = 1;
     }
 }
 
@@ -145,7 +146,7 @@ void cost_calculation_toheadList(t_list **head)
             copy->moves = 1;
         else if (copy->index <= middle(size))
         {
-            while (i < copy->index)
+            while (i < copy->index - 1)
             {
                 copy->moves += 1;
                 i++;
@@ -160,7 +161,9 @@ void cost_calculation_toheadList(t_list **head)
                 i++;
             }
         }
+        //printf("copy data : (%d) ==> copy moves : (%d) ==> copy index : (%d)\n", copy->data, copy->moves, copy->index);
         copy = copy->next;
+        i = 0;
     }
 }
 
@@ -182,7 +185,7 @@ void pushing_toheadListB(t_list **headB, int index)
         swap_b(headB);
     else if (copy->index < middle(size))
     {
-        while (i < copy->index)
+        while (i < copy->index - 1)
         {
             rotate_b(headB);
             i++;
@@ -342,7 +345,9 @@ void get_cost_to_positionNodeB_inA(t_list **headA, t_list **headB)
 
     get_index(headA);
     get_index(headB);
+    // write(1, "B\n", 2);
     cost_calculation_toheadList(headB);
+    // write(1, "A\n", 2);
     cost_calculation_toheadList(headA);
     copyA = *headA;
     copyB = *headB;
@@ -424,6 +429,7 @@ void 	sorting_above_six(t_list **head_A, t_list **head_B)
         i++;
     }
     node_to_sendtoB(head_A, head_B, sizeA);
+    //get_cost_to_positionNodeB_inA(head_A, head_B);
     while (*head_B)
         pushing_to_A(head_A, head_B);
     last_sort(head_A);

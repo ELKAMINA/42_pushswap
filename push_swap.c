@@ -60,6 +60,20 @@ t_list *create_B()
 	return (head_B);
 }
 
+void	print_lst(t_list  *start)
+{
+	t_list *temp;
+
+	temp = start;
+
+	while (temp)
+	{
+
+		printf("DATA = [%d] \n", temp->data);
+		temp = temp->next;
+	}
+}
+
 int main (int   argc, char  *argv[])
 {
 	int n;
@@ -71,7 +85,7 @@ int main (int   argc, char  *argv[])
 		return 0;
 	if	(check_dup(argv, n) == 0)
 	{
-		write (2, "Error\n", 6);
+		write (2, "Error if dup\n", 14);
 		return 0;
 	}
 	else 
@@ -89,5 +103,9 @@ int main (int   argc, char  *argv[])
 		else
 			sorting_above_six(&head_A, &head_B);
 	}
+	// write(1, "A\n", 2);
+	// print_lst(head_A);
+	// write(1, "B\n", 2);
+	// print_lst(head_B);
 	return 0 ;
 }

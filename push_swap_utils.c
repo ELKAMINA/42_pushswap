@@ -1,53 +1,34 @@
 #include "push_swap.h"
 
-void swap_a(t_list  **start)
+void swap_a(t_list  **list)
 {
-    t_list  *n1;
-    t_list  *n2;
-    t_list  *n3;
-    t_list  *temp;
+	t_list	*tmp;
+	t_list	*tmp2;
 
-
-    n1 =  *start;
-    if  (n1 == NULL)
-        return ;
-    n2 =  n1 -> next;
-    if  (n2 == NULL)
-        return ;
-    n3 = n2 -> next;
-    temp = n1 -> previous;
-    n1 -> next = n3;
-    n1 -> previous = n2;
-    n2 -> previous = temp;
-    n2 -> next = n1;
-    if (n3 != NULL)
-        n3 -> previous = n1;
-    *start = n2;
+	if (ft_lstsize(*list) >= 2)
+	{
+		tmp = *list;
+		tmp2 = (*list)->next->next;
+		*list = (*list)->next;
+		(*list)->next = tmp;
+		tmp->next = tmp2;
+	}
     write (1, "sa\n", 3);
 }
 
-void swap_b(t_list  **start)
+void swap_b(t_list  **list)
 {
-    t_list  *n1;
-    t_list  *n2;
-    t_list  *n3;
-    t_list  *temp;
+	t_list	*tmp;
+	t_list	*tmp2;
 
-    n1 =  *start;
-    if  (n1 == NULL)
-        return ;
-    n2 =  n1 -> next;
-    if  (n2 == NULL)
-        return ;
-    n3 = n2 -> next;
-    temp = n1 -> previous;
-    n1 -> next = n3;
-    n1 -> previous = n2;
-    n2 -> previous = temp;
-    n2 -> next = n1;
-    if (n3 != NULL)
-        n3 -> previous = n1;
-    *start = n2;
+	if (ft_lstsize(*list) >= 2)
+	{
+		tmp = *list;
+		tmp2 = (*list)->next->next;
+		*list = (*list)->next;
+		(*list)->next = tmp;
+		tmp->next = tmp2;
+	}
     write (1, "sb\n", 3);
 }
 
@@ -58,30 +39,38 @@ void ss(t_list *a, t_list *b)
     write (1, "ss\n", 3);
 }
 
-void push_a(t_list **dest, t_list **src)
+void push_a(t_list **list_p, t_list **list_t)
 {
-    t_list  *newNode;
-    if (*src == NULL) {
-        return;
-    }
-    newNode = *src;
-    *src = (*src)->next;
-    newNode->next = *dest;
-    *dest = newNode;  
+	t_list	*temp;
+	t_list	*temp2;
+
+	if (*list_t == NULL)
+		return ;
+	else
+	{
+		temp = (*list_t);
+		temp2 = (*list_p);
+		*list_t = (*list_t)->next;
+		*list_p = temp;
+		temp->next = temp2;
+	} 
     write(1, "pa\n", 3);
 }
 
-void push_b(t_list **dest, t_list **src)
+void push_b(t_list **list_p, t_list **list_t)
 {
-    t_list  *newNode;
-    if (*src == NULL) {
-        return ;
-    }
-    newNode = *src;
-    *src = (*src)->next;
-    (*src)-> previous = NULL;
-    newNode->next = *dest;
-    *dest = newNode; 
-    (*dest)-> previous = NULL; 
+	t_list	*temp;
+	t_list	*temp2;
+
+	if (*list_t == NULL)
+		return ;
+	else
+	{
+		temp = (*list_t);
+		temp2 = (*list_p);
+		*list_t = (*list_t)->next;
+		*list_p = temp;
+		temp->next = temp2;
+	} 
     write(1, "pb\n", 3);
 }

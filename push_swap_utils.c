@@ -32,11 +32,28 @@ void swap_b(t_list  **list)
     write (1, "sb\n", 3);
 }
 
-void ss(t_list *a, t_list *b)
+void	ss(t_list **list_a, t_list **list_b)
 {
-    swap_a(&a);
-    swap_b(&b);
-    write (1, "ss\n", 3);
+	t_list	*tmp;
+	t_list	*tmp2;
+
+	if (ft_lstsize(*list_a) >= 2)
+	{
+		tmp = *list_a;
+		tmp2 = (*list_a)->next->next;
+		*list_a = (*list_a)->next;
+		(*list_a)->next = tmp;
+		tmp->next = tmp2;
+	}
+	if (ft_lstsize(*list_b) >= 2)
+	{
+		tmp = *list_b;
+		tmp2 = (*list_b)->next->next;
+		*list_b = (*list_b)->next;
+		(*list_b)->next = tmp;
+		tmp->next = tmp2;
+	}
+	write (1, "ss\n", 3);
 }
 
 void push_a(t_list **list_p, t_list **list_t)

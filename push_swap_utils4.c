@@ -183,7 +183,7 @@ void pushing_toheadListB(t_list **headB, int index)
         return ;
     else if (copy->index == 2)
         swap_b(headB);
-    else if (copy->index < middle(size))
+    else if (copy->index <= middle(size))
     {
         while (i < copy->index - 1)
         {
@@ -216,7 +216,7 @@ void pushing_toheadListA(t_list **headA, int index, int size)
         return ;
     else if (copy->index == 2)
         rotate_a(headA);
-    else if (copy->index < middle(size))
+    else if (copy->index <= middle(size))
     {
         while (i < copy->index - 1)
         {
@@ -298,6 +298,7 @@ void node_to_sendtoB(t_list **A, t_list **B, int size)
     while (copy->sort != sort_max)
         copy = copy->next;
     copy->boolean = 'T';
+    //printf("FIRST ELEMENT: DATA------> %d, SORT : %d ---> Boolean : %c\n", copy->data, copy->sort, copy->boolean);
     moving = copy;
     current = copy->next;
     while (current != copy)
@@ -307,6 +308,7 @@ void node_to_sendtoB(t_list **A, t_list **B, int size)
             moving = current;
             moving->boolean = 'T';
         }
+        //printf("to stack B or not : DATA------> %d, SORT : %d ---> Boolean : %c\n", current->data, current->sort, current->boolean);
         current = current->next;
     }
     cost_calculation_pushtoB(A, B, size);
@@ -345,12 +347,24 @@ void get_cost_to_positionNodeB_inA(t_list **headA, t_list **headB)
 
     get_index(headA);
     get_index(headB);
-    // write(1, "B\n", 2);
     cost_calculation_toheadList(headB);
-    // write(1, "A\n", 2);
     cost_calculation_toheadList(headA);
     copyA = *headA;
     copyB = *headB;
+    // write(1, "A\n", 2);
+    // while (copyA)
+    // {
+    //     printf("COPY A = %d ------- copyA->moves ==>%d\n", copyA->data, copyA->moves);
+    //     copyA = copyA->next;
+    // }
+    // write(1, "B\n", 2);
+    // while (copyB)
+    // {
+    //     printf("COPY B = %d ------- copyB->moves ==>%d\n", copyB->data, copyB->moves);
+    //     copyB = copyB->next;
+    // }
+    // copyA = *headA;
+    // copyB = *headB;
     while(copyB)
     {
         copyB->posinA = check_pos_in_A(headA, copyB) + 1;
@@ -359,6 +373,141 @@ void get_cost_to_positionNodeB_inA(t_list **headA, t_list **headB)
         copyB->total_moves = copyA->moves + copyB->moves + 1;
         copyB = copyB->next;
         copyA = *headA;
+    }
+    // copyB = *headB;
+    // write(1, "TOTAL MOVES B\n", 15);
+    // while (copyB)
+    // {
+    //     printf("DATA = %d ====== copyB->total moves ==>%d\n", copyB->data, copyB->total_moves);
+    //     copyB = copyB->next;
+    // }
+}
+
+void ft_optimise(t_list **head_A, t_list **head_B, t_list *copyA, t_list *copyB)
+{
+ int discard;
+ int i;
+ t_list *same1;
+ t_list *same2;
+
+same1 = *head_A;
+same2 = *head_B;
+while (same1->data != copyA->data)
+    same1 = same1->next;
+while (same2->data != copyB->data)
+    same2 = same2->next;
+// printf("same1 data = %d,  copyA->index ==>%d, copyA->moves ==>%d\n", same1->data, same1->index, same1->moves);
+// printf("same2 = %d, copyB->index ==>%d, copyB->moves ==>%d ---> copyB->total moves ==>%d \n", same2->data, same2->index, same2->moves, same2->total_moves);
+ discard = same1->moves - same2->moves;
+ //printf("discard ==>%d\n", discard);
+ i = 1;
+ if (same1->moves == 0 && same2->moves > 0)
+    pushing_toheadListB(head_B, same2->index);
+ else if (same2->moves == 0 && same1->moves > 0)
+    pushing_toheadListA(head_A, same1->index, ft_lstsize(*head_A));
+// else if (same1->index == 2 && same2->index == 2)
+//     ss(head_A, head_B);
+else if (same1->index <= middle(ft_lstsize(*head_A)) && same2->index <= middle(ft_lstsize(*head_B)))
+ {
+     if (discard == 0)
+     {
+        while (i <= copyB->moves)
+        {
+            rr(head_A, head_B);
+            i++;
+        }
+     }
+     else if (discard < 0)
+     {
+         while (i <= copyA->moves)
+         {
+            rr(head_A, head_B);
+            i++;
+         }
+         //discard *= -1;
+         while (discard != 0)
+         {
+            rotate_b(head_B);
+            discard++;
+         }
+     }
+    else
+     {
+         while (i <= copyB->moves)
+         {
+            rr(head_A, head_B);
+            i++;
+         }
+         while (discard != 0)
+         {
+            rotate_a(head_A);
+            discard--;
+         }
+     }  
+ }
+ else if (same1->index > middle(ft_lstsize(*head_A)) && same2->index > middle(ft_lstsize(*head_B)))
+ {
+    if (discard == 0)
+    {
+        while (i <= copyB->moves)
+        {
+            rrr(head_A, head_B);
+            i++;
+        }
+    }
+    else if (discard < 0)
+    {
+        while (i <= copyA->moves)
+        {
+            rrr(head_A, head_B);
+            i++;
+        }
+        discard *= -1;
+        while (discard != 0)
+        {
+            rev_rotate_b(head_B);
+            discard--;
+        }
+    }
+    else
+    {
+        while (i <= copyB->moves)
+        {
+            rrr(head_A, head_B);
+            i++;
+        }
+        while (discard != 0)
+        {
+            rev_rotate_a(head_A);
+            discard--;
+        }
+    }  
+ }
+ else
+ {
+    pushing_toheadListB(head_B, copyB->index);
+    pushing_toheadListA(head_A, copyA->index, ft_lstsize(*head_A));
+ }
+}
+
+void get_moves_to_zero(t_list **headA, t_list **headB)
+{
+    t_list *copyA;
+    t_list *copyB;
+
+    copyA = *headA;
+    copyB = *headB;
+    while (copyA)
+    {
+        copyA->moves = 0;
+        copyA->total_moves = 0;
+        copyA = copyA->next;
+    }
+     while (copyB)
+    {
+        copyB->moves = 0;
+        copyB->total_moves = 0;
+        copyB = copyB->next;
     }
 }
 
@@ -371,16 +520,19 @@ void pushing_to_A(t_list **head_A, t_list **head_B)
     copyA = *head_A;
     copyB = *head_B;    
     sec_copyB = *head_B;
+    get_moves_to_zero(head_A, head_B);
     get_cost_to_positionNodeB_inA(head_A, head_B);
     while(copyB->total_moves != min_moves(&sec_copyB))
         copyB = copyB->next;
-    pushing_toheadListB(head_B, copyB->index);
     //printf("test\n");
     copyB->posinA = check_pos_in_A(head_A, copyB) + 1;
     get_index(head_A);
     while (copyA->index != copyB->posinA)
         copyA = copyA->next;
-    pushing_toheadListA(head_A, copyA->index, ft_lstsize(*head_A));
+    //printf("A to be sent ------> %d, B to be sent : %d\n", copyA->data, copyB->data);
+    ft_optimise(head_A, head_B, copyA, copyB);
+    // pushing_toheadListB(head_B, copyB->index);
+    // pushing_toheadListA(head_A, copyA->index, ft_lstsize(*head_A));
     push_a(head_A, head_B);
     
 }
@@ -425,11 +577,11 @@ void 	sorting_above_six(t_list **head_A, t_list **head_B)
             }
             current = current->next;
         }
+       // printf("MAX SORTED DATA------> %d, MAX SORTED : %d\n", current->data, current->sort);
         copy = copy->next;
         i++;
     }
     node_to_sendtoB(head_A, head_B, sizeA);
-    //get_cost_to_positionNodeB_inA(head_A, head_B);
     while (*head_B)
         pushing_to_A(head_A, head_B);
     last_sort(head_A);

@@ -29,7 +29,7 @@ long	ft_atol(const char	*str)
 	}
 	while (str[i] <= '9' && str[i] >= '0')
 	{
-		if (is_charset(str[i]) != -1 || is_charset(str[i]) == 2)
+		if (is_charset(str[i]) != -1)
 		{
 			write(2, "Error atol\n", 12);
 			exit(1);

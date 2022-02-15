@@ -73,4 +73,7 @@ void 	last_sort (t_list **headA);
 void 	decircularing(t_list **A, int size);
 void 	get_moves_to_zero(t_list **headA, t_list **headB);
 void 	ft_optimise(t_list **head_A, t_list **head_B, t_list *copyA, t_list *copyB);
+void	ft_lstclear(t_list **lst);
+void	ft_lstdelone(t_list *lst, void (*del)(void*));
+
 #endif

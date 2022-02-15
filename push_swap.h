@@ -50,6 +50,7 @@ void 	sorting_three(t_list **head_A);
 int		higher(t_list   **head);
 int 	lower(t_list   **head);
 void 	sorting_four(t_list **head_A, t_list **head_B);
+int 	check_is_sorted(t_list **head);
 void 	sorting_five(t_list **head_A, t_list **head_B);
 int 	calc_median(t_list **head);
 int 	middle (int size);

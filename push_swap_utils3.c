@@ -84,6 +84,21 @@ void sorting_three(t_list **head)
         return ;
 }
 
+int check_is_sorted(t_list **head)
+{
+    t_list *temp;
+
+    temp = *head;
+    while (temp && temp->next)
+    {
+        if (temp->data < temp->next->data)
+            temp = temp->next;
+        else
+            return (0);
+    }
+    return (1);
+}
+
 void sorting_four(t_list **head_A, t_list **head_B)
 {
 t_list *a;
@@ -97,33 +112,38 @@ a = (*head_A);
 lst_size = ft_lstsize(a);
 index_lower = 1;
 smallest = lower(&a);
-while(less-> data != smallest)
-{
-    index_lower++;
-    less = less -> next;
-}
-if (index_lower == lst_size)
-{
-   rev_rotate_a(head_A);
-   push_b(head_B, head_A); 
-}
-else if (index_lower == lst_size - 1)
-{
-    rotate_a(head_A);
-    rotate_a(head_A);
-    push_b(head_B, head_A); 
-}
-else if (index_lower == lst_size - 2)
-{
-    swap_a(head_A);
-    push_b(head_B, head_A); 
-}
+if (check_is_sorted(head_A) == 1)
+    exit(0);
 else
-{
-    push_b(head_B, head_A);
-}
-sorting_three(head_A);
-push_a(head_A, head_B);
+    {
+        while(less-> data != smallest)
+        {
+            index_lower++;
+            less = less -> next;
+        }
+        if (index_lower == lst_size)
+        {
+        rev_rotate_a(head_A);
+        push_b(head_B, head_A); 
+        }
+        else if (index_lower == lst_size - 1)
+        {
+            rotate_a(head_A);
+            rotate_a(head_A);
+            push_b(head_B, head_A); 
+        }
+        else if (index_lower == lst_size - 2)
+        {
+            swap_a(head_A);
+            push_b(head_B, head_A); 
+        }
+        else
+        {
+            push_b(head_B, head_A);
+        }
+        sorting_three(head_A);
+        push_a(head_A, head_B);
+    }
 }
 
 void check_pos_and_push(t_list **head_A, t_list **head_B, int lst_size)
@@ -175,7 +195,12 @@ void sorting_five(t_list **head_A, t_list **head_B)
 
     a = (*head_A);
     size = ft_lstsize(a);
-    check_pos_and_push(head_A, head_B, size);
-    sorting_four(head_A, head_B);
-    push_a(head_A, head_B);
+    if (check_is_sorted(head_A) == 1)
+        exit(0);
+    else
+    {
+        check_pos_and_push(head_A, head_B, size);
+        sorting_four(head_A, head_B);
+        push_a(head_A, head_B);
+    }
 }

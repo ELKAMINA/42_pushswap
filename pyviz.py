@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
 
-from tkinter import *
+
+import tkinter
 import sys
 import time
 import subprocess
@@ -26,7 +27,7 @@ You can decrease or increase the speed with the matching buttons.
 """
 
 
-RELATIVE_PATH = r'../push_swap'
+RELATIVE_PATH = r'./push_swap'
 
 
 class PsGui:

@@ -2,9 +2,6 @@ CC = gcc -Wall -Werror -Wextra -g
 
 NAME = push_swap
 
-# SRC = ft_atol.c  ft_lstadd_back.c  ft_lstadd_front.c  ft_lstlast.c \
-# ft_lstnew.c ft_swap.c  push_swap.c push_swap_utils3.c\
-
 SRC = ft_atol.c  ft_lstadd_back.c  ft_lstadd_front.c  ft_lstlast.c  ft_lstsize.c \
 ft_lstnew.c ft_lstclear.c ft_swap.c  push_swap.c push_swap_utils.c\
 push_swap_utils2.c push_swap_utils3.c push_swap_utils4.c\

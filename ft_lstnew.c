@@ -7,7 +7,10 @@ t_list	*ft_lstnew(int	argument)
 
 	new = malloc(sizeof (t_list));
 	if (new == NULL)
+	{
+		//free 
 		return (NULL);
+	}
 	new -> data = argument;
 	new -> next = NULL;
 	new -> previous = NULL;

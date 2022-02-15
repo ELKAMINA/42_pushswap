@@ -85,7 +85,7 @@ int main (int   argc, char  *argv[])
 		return 0;
 	if	(check_dup(argv, n) == 0)
 	{
-		write (2, "Error if dup\n", 14);
+		write (2, "Error\n", 7);
 		return 0;
 	}
 	else 

@@ -64,7 +64,6 @@ void sorting_three(t_list **head)
     nb2 = (*head)->next->data;
     nb3 = (*head)->next->next->data;
 
-    // printf("_____%d %d %d_______\n", nb1, nb2, nb3);
     if (nb1 > nb2 && nb2 < nb3 && nb3 > nb1)
         swap_a(head);
     else if (nb1 > nb2 && nb2 > nb3 && nb3 < nb1)
@@ -73,23 +72,16 @@ void sorting_three(t_list **head)
         rev_rotate_a(head);
     }
     else if (nb1 > nb2 && nb2 < nb3 && nb3 < nb1)
-    {
         rotate_a(head);
-    }
     else if (nb1 < nb2 && nb2 > nb3 && nb3 > nb1)
     {
         swap_a(head);
         rotate_a(head);
     }
     else if (nb1 < nb2 && nb2 > nb3 && nb3 < nb1)
-    {
         rev_rotate_a(head);
-        printf("_____%d %d %d_______\n", (*head)->data, (*head)->next->data, (*head)->next->next->data);
-    }
     else
-    {
         return ;
-    }
 }
 
 void sorting_four(t_list **head_A, t_list **head_B)

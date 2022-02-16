@@ -1,92 +1,5 @@
 #include "push_swap.h"
 
-int check_dup(char *argv[], int n)
-{
-	int	i;
-	int	j;
-
-	i = 1;
-	j = i + 1;
-	while (i <= n)
-	{
-		while(j <= n)
-		{
-			if (ft_atol(argv[i]) == ft_atol(argv[j]))
-				return (0);
-			j++;
-		}
-		i++;
-		j = i + 1;
-	}
-	return (1);
-}
-
-int check_char(char *argv[])
-{
-	int	i;
-	int	j;
-
-	j = 0;
-	i = 1;
-	while (argv[i])
-	{
-		while (argv[i][j])
-		{
-			if ((argv[i][j] < '0' || argv[i][j] > '9') && argv[i][0] != '-' )
-				return (0);
-			j++;
-		}
-		i++;
-		j = 0;
-	}
-	return (1);
-}
-
-int check_space_with_minus(char *argv[])
-{
-
-	int	i;
-	
-	i = 1;
-	while (argv[i])
-	{
-		if (*argv[i] == '-')
-		{
-			if (ft_strlen(argv[i]) == 1)
-				return (0);
-		}
-		i++;
-	}
-	return (1);
-}
-
-int check_double_signs(char *argv[])
-{
-
-	int	i;
-	int j;
-	
-	i = 1;
-	j = 1;
-	while (argv[i])
-	{
-		if (*argv[i] == '-')
-		{
-			if (ft_strlen(argv[i]) == 1)
-				return (0);
-			while (argv[i][j])
-			{
-				if	(argv[i][j] < '0' || argv[i][j] > '9')
-					return (0);
-				j++;
-			}
-		}
-		i++;
-		j = 1;
-	}
-	return (1);
-}
-
 void	ft_exit(t_list *list)
 {
 	if (!list)
@@ -131,20 +44,6 @@ t_list *create_A(int argc, char *argv[])
 	return (head_A);
 }
 
-// void	print_lst(t_list  *start)
-// {
-// 	t_list *temp;
-
-// 	temp = start;
-
-// 	while (temp)
-// 	{
-
-// 		printf("DATA = [%d] \n", temp->data);
-// 		temp = temp->next;
-// 	}
-// }
-
 int main (int   argc, char  *argv[])
 {
 	int n;
@@ -173,10 +72,6 @@ int main (int   argc, char  *argv[])
 			sorting_five(&head_A, &head_B);
 		else
 			sorting_above_five(&head_A, &head_B);
-	// write(1, "A\n", 2);
-	// print_lst(head_A);
-	// write(1, "B\n", 2);
-	// print_lst(head_B);
 	ft_lstclear(&head_A);
 }
 	return 0 ;

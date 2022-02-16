@@ -11,6 +11,7 @@ SRC = push_swap.c \
 		./src/external_func/ft_lstnew.c\
 		./src/external_func/ft_lstclear.c\
 		./src/external_func/ft_strlen.c\
+		./src/parsing_args/check_args.c\
 		./src/authorized_op/revRotate_and_rrr.c\
 		./src/authorized_op/rotate_and_rr.c\
 		./src/authorized_op/swap_and_push.c\

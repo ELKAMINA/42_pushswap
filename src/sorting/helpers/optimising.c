@@ -13,17 +13,12 @@ while (same1->data != copyA->data)
     same1 = same1->next;
 while (same2->data != copyB->data)
     same2 = same2->next;
-// printf("same1 data = %d,  copyA->index ==>%d, copyA->moves ==>%d\n", same1->data, same1->index, same1->moves);
-// printf("same2 = %d, copyB->index ==>%d, copyB->moves ==>%d ---> copyB->total moves ==>%d \n", same2->data, same2->index, same2->moves, same2->total_moves);
  discard = same1->moves - same2->moves;
- //printf("discard ==>%d\n", discard);
  i = 1;
  if (same1->moves == 0 && same2->moves > 0)
     pushing_toheadListB(head_B, same2->index);
  else if (same2->moves == 0 && same1->moves > 0)
     pushing_toheadListA(head_A, same1->index, ft_lstsize(*head_A));
-// else if (same1->index == 2 && same2->index == 2)
-//     ss(head_A, head_B);
 else if (same1->index <= middle(ft_lstsize(*head_A)) && same2->index <= middle(ft_lstsize(*head_B)))
  {
      if (discard == 0)

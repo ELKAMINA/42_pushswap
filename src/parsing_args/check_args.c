@@ -42,7 +42,7 @@ int check_char(char *argv[])
 	return (1);
 }
 
-int check_space_with_minus(char *argv[])
+int check_sp(char *argv[])
 {
 
 	int	i;
@@ -60,7 +60,7 @@ int check_space_with_minus(char *argv[])
 	return (1);
 }
 
-int check_double_signs(char *argv[])
+int check_dsi(char *argv[])
 {
 
 	int	i;

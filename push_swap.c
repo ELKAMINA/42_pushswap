@@ -32,7 +32,7 @@ int check_char(char *argv[])
 	{
 		while (argv[i][j])
 		{
-			if ((argv[i][j] > 64 && argv[i][j] < 91) || (argv[i][j] > 96 && argv[i][j] < 123))
+			if ((argv[i][j] < '0' || argv[i][j] > '9') && argv[i][0] != '-' )
 				return (0);
 			j++;
 		}

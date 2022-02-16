@@ -25,16 +25,15 @@ typedef struct s_list
 }					t_list;
 
 void fonction_swap(t_list  *start);
-
 void	print_lst(t_list  *start);
 long	ft_atol(const char *str);
 t_list	*ft_lstnew(int	argument);
-void	ft_lstadd_back(t_list **alst, t_list *new);
+void	ft_lstadd_back(t_list **alst, t_list *node);
 t_list	*ft_lstlast(t_list *lst);
 int		ft_lstsize(t_list *lst);
 void 	swap_a(t_list  **head_A);
 void 	swap_b(t_list  **head_B);
-void	ft_lstadd_front(t_list **alst, t_list *new);
+void	ft_lstadd_front(t_list **alst, t_list *node);
 void 	push_a(t_list **a, t_list **b);
 void 	push_b(t_list **a, t_list **b);
 void 	ss(t_list **a, t_list **b);
@@ -47,14 +46,14 @@ void 	rev_rotate_a(t_list **a);
 void 	rev_rotate_b(t_list **b);
 void 	sorting_two(t_list **head_A);
 void 	sorting_three(t_list **head_A);
+void 	sorting_four(t_list **head_A, t_list **head_B);
+void 	sorting_five(t_list **head_A, t_list **head_B);
+void 	sorting_above_five(t_list **head_A, t_list **head_B);
 int		higher(t_list   **head);
 int 	lower(t_list   **head);
-void 	sorting_four(t_list **head_A, t_list **head_B);
 int 	check_is_sorted(t_list **head);
-void 	sorting_five(t_list **head_A, t_list **head_B);
 int 	calc_median(t_list **head);
 int 	middle (int size);
-void 	sorting_above_six(t_list **head_A, t_list **head_B);
 void 	circularing_LL(t_list **A);
 void 	node_to_sendtoB(t_list **A, t_list **head_B, int size);
 int 	max_sort(t_list   **head_A, int size);

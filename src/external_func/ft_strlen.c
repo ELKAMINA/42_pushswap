@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../../push_swap.h"
 
 size_t	ft_strlen(char *str)
 {

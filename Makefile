@@ -2,9 +2,29 @@ CC = gcc -Wall -Werror -Wextra -g
 
 NAME = push_swap
 
-SRC = ft_atol.c  ft_lstadd_back.c  ft_lstadd_front.c  ft_lstlast.c  ft_lstsize.c \
-ft_lstnew.c ft_lstclear.c ft_strlen.c ft_swap.c  push_swap.c push_swap_utils.c\
-push_swap_utils2.c push_swap_utils3.c push_swap_utils4.c\
+SRC = push_swap.c \
+		./src/external_func/ft_atol.c \
+		./src/external_func/ft_lstadd_back.c \
+		./src/external_func/ft_lstadd_front.c \
+		./src/external_func/ft_lstlast.c \
+		./src/external_func/ft_lstsize.c \
+		./src/external_func/ft_lstnew.c\
+		./src/external_func/ft_lstclear.c\
+		./src/external_func/ft_strlen.c\
+		./src/authorized_op/revRotate_and_rrr.c\
+		./src/authorized_op/rotate_and_rr.c\
+		./src/authorized_op/swap_and_push.c\
+		./src/basic_calc/calc_low_high.c\
+		./src/basic_calc/calc_middle_med.c\
+		./src/sorting/sort_above_five.c\
+		./src/sorting/sort_four_five.c\
+		./src/sorting/sort_one_three.c\
+		./src/sorting/helpers/check_moves.c \
+		./src/sorting/helpers/check_update_pos.c \
+		./src/sorting/helpers/cir_decir_dll.c \
+		./src/sorting/helpers/cost_calc.c \
+		./src/sorting/helpers/optimising.c \
+		./src/sorting/helpers/pushing_func.c \
 
 OBJ = $(SRC:.c=.o)
 

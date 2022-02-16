@@ -1,5 +1,4 @@
-
-#include "push_swap.h"
+#include "../../push_swap.h"
 
 void	ft_lstclear(t_list **lst)
 {

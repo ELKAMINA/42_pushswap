@@ -6,7 +6,7 @@
 /*   By: ael-khat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 18:10:20 by ael-khat          #+#    #+#             */
-/*   Updated: 2022/02/17 18:12:10 by ael-khat         ###   ########.fr       */
+/*   Updated: 2022/02/17 18:54:11 by ael-khat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	check_char(char *argv[])
 	i = 1;
 	while (argv[i])
 	{
+		if (*argv[i] == '\0')
+			return (0);
 		while (argv[i][j])
 		{
 			if ((argv[i][j] < '0' || argv[i][j] > '9') && argv[i][0] != '-' )

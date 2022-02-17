@@ -36,12 +36,12 @@ void	max_min_int(long nb)
 {
 	if (nb >= 2147483647)
 	{
-		printf("Error, int max\n");
+		write(2, "Error\n", 7);
 		exit(0);
 	}
 	if (nb <= -2147483648)
 	{
-		printf("Error, int min\n");
+		write(2, "Error\n", 7);
 		exit(0);
 	}
 }

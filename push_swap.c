@@ -87,7 +87,10 @@ int	main(int argc, char *argv[])
 	head_b = NULL;
 	n = argc - 1;
 	if (argc < 2)
+	{
+		write(2, "Error\n", 7);
 		return (0);
+	}
 	if (check_dup(argv, n) == 0 || check_char(argv) == 0
 		|| check_sp(argv) == 0 || check_dsi(argv) == 0)
 	{

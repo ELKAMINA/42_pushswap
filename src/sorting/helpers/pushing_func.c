@@ -110,9 +110,9 @@ void pushing_to_A(t_list **head_A, t_list **head_B)
     while(copyB->total_moves != min_moves(&sec_copyB))
         copyB = copyB->next;
     //printf("test\n");
-    copyB->posinA = check_pos_in_A(head_A, copyB) + 1;
+    copyB->posina = check_pos_in_A(head_A, copyB) + 1;
     get_index(head_A);
-    while (copyA->index != copyB->posinA)
+    while (copyA->index != copyB->posina)
         copyA = copyA->next;
     //printf("A to be sent ------> %d, B to be sent : %d\n", copyA->data, copyB->data);
     ft_optimise(head_A, head_B, copyA, copyB);

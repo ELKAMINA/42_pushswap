@@ -100,8 +100,8 @@ void get_cost_to_positionNodeB_inA(t_list **headA, t_list **headB)
     copyB = *headB;
     while(copyB)
     {
-        copyB->posinA = check_pos_in_A(headA, copyB) + 1;
-        while (copyB->posinA != copyA->index)
+        copyB->posina = check_pos_in_A(headA, copyB) + 1;
+        while (copyB->posina != copyA->index)
             copyA = copyA->next;
         copyB->total_moves = copyA->moves + copyB->moves + 1;
         copyB = copyB->next;

@@ -19,6 +19,7 @@ SRC = push_swap.c \
 		./src/basic_calc/calc_middle_med.c\
 		./src/sorting/sort_above_five.c\
 		./src/sorting/sort_four_five.c\
+		./src/sorting/sort_four_five2.c\
 		./src/sorting/sort_one_three.c\
 		./src/sorting/helpers/check_moves.c \
 		./src/sorting/helpers/check_update_pos.c \

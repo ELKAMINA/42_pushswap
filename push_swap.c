@@ -6,7 +6,7 @@
 /*   By: ael-khat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 17:40:38 by ael-khat          #+#    #+#             */
-/*   Updated: 2022/02/16 18:36:35 by ael-khat         ###   ########.fr       */
+/*   Updated: 2022/02/17 11:42:12 by ael-khat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,27 @@ void	ft_exit(t_list *list)
 	}
 }
 
+void	create_nodes(t_list *head_a, int n, t_list *current_a, char *argv[])
+{
+	int	i;
+
+	i = 3;
+	while (i <= n)
+	{
+		current_a = ft_lstnew((int)ft_atol(argv[i]));
+		ft_exit(current_a);
+		ft_lstadd_back(&head_a, current_a);
+		i++;
+	}
+}
+
 t_list	*create_a(int argc, char *argv[])
 {
-	int		i;
 	int		n;
 	t_list	*head_a;
 	t_list	*current_a;
 
 	n = argc - 1;
-	i = 3;
 	if (n == 1)
 	{
 		head_a = ft_lstnew((int)ft_atol(argv[1]));
@@ -45,15 +57,24 @@ t_list	*create_a(int argc, char *argv[])
 		ft_exit(current_a);
 		head_a -> next = current_a;
 		current_a -> previous = head_a;
-		while (i <= n)
-		{
-			current_a = ft_lstnew((int)ft_atol(argv[i]));
-			ft_exit(current_a);
-			ft_lstadd_back(&head_a, current_a);
-			i++;
-		}
+		create_nodes(head_a, n, current_a, argv);
 	}
 	return (head_a);
+}
+
+void	algos(t_list *head_a, t_list *head_b, int argc)
+{
+	if (argc == 3)
+		sorting_two(&head_a);
+	else if (argc == 4)
+		sorting_three(&head_a);
+	else if (argc == 5)
+		sorting_four(&head_a, &head_b);
+	else if (argc == 6)
+		sorting_five(&head_a, &head_b);
+	else
+		sorting_above_five(&head_a, &head_b);
+	ft_lstclear(&head_a);
 }
 
 int	main(int argc, char *argv[])
@@ -62,6 +83,8 @@ int	main(int argc, char *argv[])
 	t_list	*head_a;
 	t_list	*head_b;
 
+	head_a = create_a(argc, argv);
+	head_b = NULL;
 	n = argc - 1;
 	if (argc < 2)
 		return (0);
@@ -72,20 +95,6 @@ int	main(int argc, char *argv[])
 		return (0);
 	}
 	else
-	{
-		head_a = create_a(argc, argv);
-		head_b = NULL;
-		if (argc == 3)
-			sorting_two(&head_a);
-		else if (argc == 4)
-			sorting_three(&head_a);
-		else if (argc == 5)
-			sorting_four(&head_a, &head_b);
-		else if (argc == 6)
-			sorting_five(&head_a, &head_b);
-		else
-			sorting_above_five(&head_a, &head_b);
-		ft_lstclear(&head_a);
-	}
+		algos(head_a, head_b, argc);
 	return (0);
 }

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate_and_rr.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ael-khat <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/17 17:45:15 by ael-khat          #+#    #+#             */
+/*   Updated: 2022/02/17 17:46:14 by ael-khat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../push_swap.h"
 
-void rotate_a(t_list **list)
+void	rotate_a(t_list **list)
 {
 	t_list	*curs;
 	t_list	*tmp;
@@ -17,10 +29,10 @@ void rotate_a(t_list **list)
 		curs->next = tmp;
 		tmp->next = NULL;
 	}
-    write(1, "ra\n", 3);
+	write(1, "ra\n", 3);
 }
 
-void rotate_b(t_list **list)
+void	rotate_b(t_list **list)
 {
 	t_list	*curs;
 	t_list	*tmp;
@@ -37,11 +49,10 @@ void rotate_b(t_list **list)
 		curs->next = tmp;
 		tmp->next = NULL;
 	}
-    write(1, "rb\n", 3);
+	write(1, "rb\n", 3);
 }
 
-
-void rr(t_list **list_a, t_list **list_b)
+void	rr(t_list **list_a, t_list **list_b)
 {
 	t_list	*curs;
 	t_list	*tmp;
@@ -64,7 +75,7 @@ void rr(t_list **list_a, t_list **list_b)
 		while (curs->next != NULL)
 			curs = curs->next;
 		curs->next = tmp;
-		 tmp->next = NULL;
+		tmp->next = NULL;
 	}
-    write (1, "rr\n", 3);
+	write (1, "rr\n", 3);
 }

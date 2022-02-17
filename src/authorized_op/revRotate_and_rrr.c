@@ -1,28 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   revRotate_and_rrr.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ael-khat <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/17 17:44:00 by ael-khat          #+#    #+#             */
+/*   Updated: 2022/02/17 17:44:38 by ael-khat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../push_swap.h"
 
-void rev_rotate_a(t_list **list)
-{
-   	t_list	*temp;
-	t_list	*prev;
-
-	if (*list == NULL)
-		return ;
-	else
-	{
-		temp = (*list);
-		while ((*list)->next != NULL)
-		{
-			prev = (*list);
-			(*list) = (*list)->next;
-		}
-		prev->next = NULL;
-		(*list) = (*list);
-		(*list)->next = temp;
-	}
-    write (1, "rra\n", 4);
-}
-
-void rev_rotate_b(t_list **list)
+void	rev_rotate_a(t_list **list)
 {
 	t_list	*temp;
 	t_list	*prev;
@@ -41,7 +31,29 @@ void rev_rotate_b(t_list **list)
 		(*list) = (*list);
 		(*list)->next = temp;
 	}
-    write (1, "rrb\n", 4);
+	write (1, "rra\n", 4);
+}
+
+void	rev_rotate_b(t_list **list)
+{
+	t_list	*temp;
+	t_list	*prev;
+
+	if (*list == NULL)
+		return ;
+	else
+	{
+		temp = (*list);
+		while ((*list)->next != NULL)
+		{
+			prev = (*list);
+			(*list) = (*list)->next;
+		}
+		prev->next = NULL;
+		(*list) = (*list);
+		(*list)->next = temp;
+	}
+	write (1, "rrb\n", 4);
 }
 
 void	rrr(t_list **list_a, t_list **list_b)

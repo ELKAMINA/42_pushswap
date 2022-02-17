@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   swap_and_push.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ael-khat <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/17 17:46:31 by ael-khat          #+#    #+#             */
+/*   Updated: 2022/02/17 17:48:33 by ael-khat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../push_swap.h"
 
-void swap_a(t_list  **list)
+void	swap_a(t_list **list)
 {
 	t_list	*tmp;
 	t_list	*tmp2;
@@ -13,10 +25,10 @@ void swap_a(t_list  **list)
 		(*list)->next = tmp;
 		tmp->next = tmp2;
 	}
-    write (1, "sa\n", 3);
+	write (1, "sa\n", 3);
 }
 
-void swap_b(t_list  **list)
+void	swap_b(t_list **list)
 {
 	t_list	*tmp;
 	t_list	*tmp2;
@@ -29,7 +41,7 @@ void swap_b(t_list  **list)
 		(*list)->next = tmp;
 		tmp->next = tmp2;
 	}
-    write (1, "sb\n", 3);
+	write (1, "sb\n", 3);
 }
 
 void	ss(t_list **list_a, t_list **list_b)
@@ -56,7 +68,7 @@ void	ss(t_list **list_a, t_list **list_b)
 	write (1, "ss\n", 3);
 }
 
-void push_a(t_list **list_p, t_list **list_t)
+void	push_a(t_list **list_p, t_list **list_t)
 {
 	t_list	*temp;
 	t_list	*temp2;
@@ -70,11 +82,11 @@ void push_a(t_list **list_p, t_list **list_t)
 		*list_t = (*list_t)->next;
 		*list_p = temp;
 		temp->next = temp2;
-	} 
-    write(1, "pa\n", 3);
+	}
+	write(1, "pa\n", 3);
 }
 
-void push_b(t_list **list_p, t_list **list_t)
+void	push_b(t_list **list_p, t_list **list_t)
 {
 	t_list	*temp;
 	t_list	*temp2;
@@ -88,6 +100,6 @@ void push_b(t_list **list_p, t_list **list_t)
 		*list_t = (*list_t)->next;
 		*list_p = temp;
 		temp->next = temp2;
-	} 
-    write(1, "pb\n", 3);
+	}
+	write(1, "pb\n", 3);
 }

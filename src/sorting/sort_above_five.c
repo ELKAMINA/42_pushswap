@@ -24,7 +24,7 @@ void	last_sort(t_list **headA)
 	min = lower(&copy2);
 	while (copy->data != min)
 		copy = copy->next;
-	pushing_toheadListA(headA, copy->index, ft_lstsize(*headA));
+	pushing_toheadlista(headA, copy->index, ft_lstsize(*headA));
 }
 
 void	incr_sort(int sizea, t_list **head_A)
@@ -59,10 +59,10 @@ void	sorting_above_five(t_list **head_A, t_list **head_B)
 	int			sizea;
 
 	sizea = ft_lstsize(*head_A);
-	circularing_LL(head_A);
+	circularing(head_A);
 	incr_sort(sizea, head_A);
-	node_to_sendtoB(head_A, head_B, sizea);
+	node_to_sendtob(head_A, head_B, sizea);
 	while (*head_B)
-		pushing_to_A(head_A, head_B);
+		pushing_to_a(head_A, head_B);
 	last_sort(head_A);
 }

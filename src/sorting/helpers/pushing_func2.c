@@ -1,50 +1,61 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_moves.c                                      :+:      :+:    :+:   */
+/*   pushing_func2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-khat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 14:45:15 by ael-khat          #+#    #+#             */
-/*   Updated: 2022/02/17 14:47:00 by ael-khat         ###   ########.fr       */
+/*   Created: 2022/02/17 17:20:40 by ael-khat          #+#    #+#             */
+/*   Updated: 2022/02/17 17:20:53 by ael-khat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../push_swap.h"
 
-int	max_sort(t_list **head, int size)
+void	loop_to_pushb(int ind, t_list **headB)
 {
-	int	min_int;
-	int	max;
 	int	i;
 
 	i = 0;
-	min_int = -2147483648;
-	max = min_int;
-	while (i < size)
+	while (i < ind - 1)
 	{
-		if (max < (*head)->sort)
-			max = (*head)->sort;
-		*head = (*head)->next;
+		rotate_b(headB);
 		i++;
 	}
-	return (max);
 }
 
-int	min_moves(t_list **head)
+void	loop_to_rrb(int ind, t_list **headB, int size)
 {
-	int		min;
-	t_list	*copy;
-	int		max_int;
+	int	i;
 
-	copy = *head;
-	max_int = 2147483647;
-	min = max_int;
-	while (copy)
+	i = ind;
+	while (i <= size)
 	{
-		if (min > copy->total_moves)
-			min = copy->total_moves;
-		copy = copy->next;
+		rev_rotate_b(headB);
+		i++;
 	}
-	return (min);
+}
+
+void	loop_to_pusha(int ind, t_list **headA)
+{
+	int	i;
+
+	i = 0;
+	while (i < ind - 1)
+	{
+		rotate_a(headA);
+		i++;
+	}
+}
+
+void	loop_to_rra(int ind, t_list **headA, int size)
+{
+	int	i;
+
+	i = ind;
+	while (i <= size)
+	{
+		rev_rotate_a(headA);
+		i++;
+	}
 }

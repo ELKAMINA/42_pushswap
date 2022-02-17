@@ -25,8 +25,12 @@ SRC = push_swap.c \
 		./src/sorting/helpers/check_update_pos.c \
 		./src/sorting/helpers/cir_decir_dll.c \
 		./src/sorting/helpers/cost_calc.c \
+		./src/sorting/helpers/cost_calc2.c \
 		./src/sorting/helpers/optimising.c \
+		./src/sorting/helpers/optimising/loops_rr.c \
+		./src/sorting/helpers/optimising/loops_rrr.c \
 		./src/sorting/helpers/pushing_func.c \
+		./src/sorting/helpers/pushing_func2.c \
 
 OBJ = $(SRC:.c=.o)
 

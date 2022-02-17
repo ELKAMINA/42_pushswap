@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ael-khat <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/17 17:57:15 by ael-khat          #+#    #+#             */
+/*   Updated: 2022/02/17 18:04:00 by ael-khat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../push_swap.h"
 
 int	is_charset(char c)
@@ -11,34 +23,17 @@ int	is_charset(char c)
 		return (-1);
 }
 
-long	ft_atol(const char	*str)
+void	err_handling(char str)
 {
-	long		i;
-	long		sign;
-	long		nb;
+	if (is_charset(str) != -1)
+	{
+		write(2, "Error atol\n", 12);
+		exit(1);
+	}
+}
 
-	i = 0;
-	sign = 1;
-	nb = 0;
-	
-	while (is_charset(str[i]) == 1)
-	{
-		if (str[i] == '-')
-			sign *= -1;
-		i++;
-	}
-	while (str[i] <= '9' && str[i] >= '0')
-	{
-		if (is_charset(str[i]) != -1)
-		{
-			write(2, "Error atol\n", 12);
-			exit(1);
-			break;	
-		}
-		nb = nb * 10 + (str[i] - '0');
-		i++;
-	}
-	nb = nb *sign;
+void	max_min_int(long nb)
+{
 	if (nb >= 2147483647)
 	{
 		printf("Error, int max\n");
@@ -49,5 +44,30 @@ long	ft_atol(const char	*str)
 		printf("Error, int min\n");
 		exit(0);
 	}
+}
+
+long	ft_atol(const char	*str)
+{
+	long		i;
+	long		sign;
+	long		nb;
+
+	i = 0;
+	sign = 1;
+	nb = 0;
+	while (is_charset(str[i]) == 1)
+	{
+		if (str[i] == '-')
+			sign *= -1;
+		i++;
+	}
+	while (str[i] <= '9' && str[i] >= '0')
+	{
+		err_handling(str[i]);
+		nb = nb * 10 + (str[i] - '0');
+		i++;
+	}
+	nb = nb * sign;
+	max_min_int(nb);
 	return (nb);
 }

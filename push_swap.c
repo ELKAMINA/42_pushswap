@@ -16,7 +16,7 @@ void	ft_exit(t_list *list)
 {
 	if (!list)
 	{
-		printf("error malloc\n");
+		write(2, "Error malloc\n", 14);
 		exit(0);
 	}
 }

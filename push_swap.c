@@ -83,21 +83,21 @@ int	main(int argc, char *argv[])
 	t_list	*head_a;
 	t_list	*head_b;
 
-	head_a = create_a(argc, argv);
-	head_b = NULL;
 	n = argc - 1;
-	if (argc < 2)
+	if (argc > 2)
 	{
-		write(2, "Error\n", 7);
-		return (0);
+		if (check_dup(argv, n) == 0 || check_char(argv) == 0
+			|| check_sp(argv) == 0 || check_dsi(argv) == 0)
+		{
+			write (2, "Error\n", 7);
+			return (0);
+		}
+		else
+		{
+			head_a = create_a(argc, argv);
+			head_b = NULL;
+			algos(head_a, head_b, argc);
+		}
 	}
-	if (check_dup(argv, n) == 0 || check_char(argv) == 0
-		|| check_sp(argv) == 0 || check_dsi(argv) == 0)
-	{
-		write (2, "Error\n", 7);
-		return (0);
-	}
-	else
-		algos(head_a, head_b, argc);
 	return (0);
 }

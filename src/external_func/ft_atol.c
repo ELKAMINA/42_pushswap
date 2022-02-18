@@ -34,12 +34,12 @@ void	err_handling(char str)
 
 void	max_min_int(long nb)
 {
-	if (nb >= 2147483647)
+	if (nb > 2147483647)
 	{
 		write(2, "Error\n", 7);
 		exit(0);
 	}
-	if (nb <= -2147483648)
+	if (nb < -2147483648)
 	{
 		write(2, "Error\n", 7);
 		exit(0);
